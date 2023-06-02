@@ -15,3 +15,13 @@ This Python file defines the architecture of the CNN model. It uses the PyTorch 
 
 ### utils.py: 
 This Python file contains utility functions used in the training and evaluation process. It includes functions for training, testing and plotting the loss and accurcay.
+
+## Usage
+To use the MNIST PyTorch model, follow these steps:
+
+* Clone this repository to your local machine.
+* Open the S5.ipynb notebook using Colab Notebook or any compatible environment.
+* Run the notebook cells sequentially to load the dataset, define the model, train the model, and evaluate its performance.
+
+## Acknowledgments
+The MNIST dataset was originally created by Yann LeCun, Corinna Cortes, and Christopher J.C. Burges. More information about the dataset can be found at http://yann.lecun.com/exdb/mnist/.
