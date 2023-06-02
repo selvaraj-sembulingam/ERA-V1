@@ -24,4 +24,4 @@ To use the MNIST PyTorch model, follow these steps:
 * Run the notebook cells sequentially to load the dataset, define the model, train the model, and evaluate its performance.
 
 ## Acknowledgments
-The MNIST dataset was originally created by Yann LeCun, Corinna Cortes, and Christopher J.C. Burges. More information about the dataset can be found at http://yann.lecun.com/exdb/mnist/.
+The MNIST dataset was originally created by Yann LeCun, Corinna Cortes, and Christopher J.C. Burges. More information about the dataset can be found at http://yann.lecun.com/exdb/mnist/. The dataset is made available under a Creative Commons Attribution-Share Alike 3.0 license.
