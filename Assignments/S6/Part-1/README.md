@@ -1,13 +1,18 @@
 
 
-h_1=w_1*i_1+w_2*i_2
-h_2=w_3*i_1+w_4*i_2
-a_(h_█(1@ ) )=σ(h_1 )=1/(1+exp⁡(-h_1 ) )
-a_(h_█(2@ ) )=σ(h_2 )=1/(1+exp⁡(-h_2 ) )
-o_1=w_5*a_(h_1 )+ w_6*a_(h_2 )
-o_2=w_7*a_(h_1 )+ w_8*a_(h_2 )
-a_(o_█(1@ ) )=σ(o_1 )
-a_(o_█(2@ ) )=σ(o_2 )
-E_total=E_1+E_2
-E_1=(1/2) (t_1-a_(o_1 ) )^2
-E_2=(1/2) (t_2-a_(o_2 ) )^2
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/99a05ddf-fd12-4e32-a28c-0af1679486e1)
+
+
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/f34b31c1-d742-41c4-8460-3887ff2adc5d)
+
+
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/34f7640a-3165-4fab-9eb3-8eb39daa4dec)
+
+
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/634cd11c-0802-4e65-a6e9-cffac5b306d0)
+
+
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/2b28aee4-433c-4cb1-aebf-2902d2181b1a)
+
+
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/c075c84d-d807-4a56-bf8d-48f3dec2f1a3)
