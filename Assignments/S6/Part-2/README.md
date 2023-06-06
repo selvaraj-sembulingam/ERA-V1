@@ -46,3 +46,8 @@ Params size (MB): 0.07
 Estimated Total Size (MB): 0.74
 ----------------------------------------------------------------
 ```
+
+## Key Achievements
+* 99.4% validation accuracy
+* Less than 20k Parameters
+* Less than 20 Epochs
