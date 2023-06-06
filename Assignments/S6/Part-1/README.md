@@ -1,3 +1,4 @@
+# Backpropagation
 
 ## Forward pass
 ![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/372157ce-2362-49d1-87c4-5ec541bd76a6)
