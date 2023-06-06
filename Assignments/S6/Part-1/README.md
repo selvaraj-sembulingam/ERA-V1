@@ -27,9 +27,9 @@ Neural networks use supervised learning to generate output vectors from input ve
 ## Calculating gradients in layer 1
 ![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/c075c84d-d807-4a56-bf8d-48f3dec2f1a3)
 
-## Results for Sample Data (Refer Excel Sheet)
+## Results for Sample Data (Refer Excel Sheet-1)
 ![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/824d8544-1ef9-4b51-b9f8-e9c8b21c8319)
 
-### Variation of Lossess wrt Learning Rate
+### Variation of Lossess wrt Learning Rate (Refer Excel Sheet-2)
 ![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/2f5c34f1-4853-4c4a-b310-a2027c24926f)
 
