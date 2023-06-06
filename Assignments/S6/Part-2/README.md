@@ -5,6 +5,21 @@
 
 ## Description
 
+The architecture is a deep convolutional neural network (CNN) which achieved outstanding performance on MNIST image classification. The key characteristic is its simplicity and uniformity in design, making it easy to understand and replicate.
+
+The  architecture consists of several convolutional layers followed by GAP.
+
+The core building block is the repeated use of 3x3 convolutional layers stacked on top of each other. The basic structure of an architectural block is as follows:
+
+Convolutional Layers: A set of consecutive convolutional layers with a small receptive field (3x3). These layers are responsible for capturing local features and spatial patterns in the input images.
+
+BatchNorm: To normalize the inputs of a layer by subtracting the batch mean and dividing by the batch standard deviation, helping to stabilize and accelerate the training process.
+
+ReLU Activation: A rectified linear unit (ReLU) activation function is applied after each convolutional layer and max pooling layer. ReLU introduces non-linearity to the network, allowing it to model complex relationships in the data.
+
+Max Pooling Layer: A max pooling layer follows the convolutional layers. It performs downsampling by taking the maximum value within a pooling window. Max pooling helps in reducing the spatial dimensions while retaining the most salient features.
+
+Finally a Global Average Pooling and softmax are used to produce predictions
 ```
 ----------------------------------------------------------------
         Layer (type)               Output Shape         Param #
