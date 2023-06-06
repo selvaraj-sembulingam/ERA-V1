@@ -26,6 +26,7 @@ Based on the above equations we will write equations for w5, w6, w7, w8 at layer
 
 ## Calculating gradients intermediate step for layer 1
 Now for calculating the gradients for layer 1, we need the gradients wrt h1 and h2
+
 ![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/634cd11c-0802-4e65-a6e9-cffac5b306d0)
 
 ## Calculating gradients in layer 1
