@@ -13,7 +13,7 @@ Neural networks use supervised learning to generate output vectors from input ve
 ![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/372157ce-2362-49d1-87c4-5ec541bd76a6)
 
 ## Calculating gradients wrt w5
-![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/f34b31c1-d742-41c4-8460-3887ff2adc5d)
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/4c9b3f1b-6c3a-479e-a2ac-29009c0f3d13)
 
 ## Calculating gradients in layer 2
 ![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/34f7640a-3165-4fab-9eb3-8eb39daa4dec)
