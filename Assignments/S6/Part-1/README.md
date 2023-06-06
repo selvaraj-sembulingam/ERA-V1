@@ -30,6 +30,6 @@ Neural networks use supervised learning to generate output vectors from input ve
 ## Results for Sample Data (Refer Excel Sheet)
 ![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/824d8544-1ef9-4b51-b9f8-e9c8b21c8319)
 
-### Loss for Learning Rate = 1
-![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/db065699-13d5-4cae-a04d-ea55e557c838)
+### Variation of Lossess wrt Learning Rate
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/2f5c34f1-4853-4c4a-b310-a2027c24926f)
 
