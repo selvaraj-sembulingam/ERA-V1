@@ -159,7 +159,7 @@ class Model4(nn.Module):
         self.layer6 = nn.Sequential(
             nn.Conv2d(16, 10, kernel_size=1, stride=1, bias=False),
             nn.ReLU(),
-            nn.BatchNorm2d(16),
+            nn.BatchNorm2d(10),
             nn.Dropout(dropout_value))
         self.gap = nn.Sequential(
             nn.AdaptiveAvgPool2d(1))
@@ -215,7 +215,7 @@ class Model5(nn.Module):
             nn.Dropout(dropout_value))
         self.gap = nn.Sequential(
             nn.AdaptiveAvgPool2d(1))
-        self.layer8 = nn.Sequential(
+        self.layer7 = nn.Sequential(
             nn.Conv2d(16, 10, kernel_size=1, stride=1, bias=False),
             nn.BatchNorm2d(10))
 
@@ -227,7 +227,7 @@ class Model5(nn.Module):
         x = self.layer5(x)
         x = self.layer6(x)
         x = self.gap(x)
-        x = self.layer8(x)
+        x = self.layer7(x)
         x = x.view((x.shape[0],-1))
         x = F.log_softmax(x, dim=1)
 
