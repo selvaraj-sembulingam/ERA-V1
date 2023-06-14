@@ -216,8 +216,7 @@ class Model5(nn.Module):
         self.gap = nn.Sequential(
             nn.AdaptiveAvgPool2d(1))
         self.layer7 = nn.Sequential(
-            nn.Conv2d(16, 10, kernel_size=1, stride=1, bias=False),
-            nn.BatchNorm2d(10))
+            nn.Conv2d(16, 10, kernel_size=1, stride=1, bias=False))
 
     def forward(self, x):
         x = self.layer1(x)
