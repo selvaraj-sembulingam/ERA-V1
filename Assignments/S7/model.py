@@ -106,8 +106,7 @@ class Model3(nn.Module):
             nn.BatchNorm2d(16),
             nn.ReLU())
         self.layer6 = nn.Sequential(
-            nn.Conv2d(16, 10, kernel_size=1, stride=1, bias=False),
-            nn.BatchNorm2d(10))
+            nn.Conv2d(16, 10, kernel_size=1, stride=1, bias=False))
         self.gap = nn.Sequential(
             nn.AdaptiveAvgPool2d(1))
 
@@ -155,10 +154,7 @@ class Model4(nn.Module):
             nn.ReLU(),
             nn.Dropout(dropout_value))
         self.layer6 = nn.Sequential(
-            nn.Conv2d(16, 10, kernel_size=1, stride=1, bias=False),
-            nn.ReLU(),
-            nn.BatchNorm2d(10),
-            nn.Dropout(dropout_value))
+            nn.Conv2d(16, 10, kernel_size=1, stride=1, bias=False))
         self.gap = nn.Sequential(
             nn.AdaptiveAvgPool2d(1))
 
