@@ -74,14 +74,4 @@
 
 
 ## Receptive Field of the Models
-	r_in	n_in	j_in	s	r_out	n_out	j_out		kernal_size	padding
-Conv	1	28	1	1	3	26	1		3	0
-Conv	3	26	1	1	5	24	1		3	0
-Max Pooling	5	24	1	2	6	12	2		2	0
-Conv	6	12	2	1	10	10	2		3	0
-Conv	10	10	2	1	14	8	2		3	0
-Max Pooling	14	8	2	2	16	4	4		2	0
-Conv	16	4	4	1	24	2	4		3	0
-Conv	24	2	4	1	24	2	4		1	0
-GAP	24	2	4	1	28	1	4		2	0
 ![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/ba2e8219-45b3-4746-8d5d-dfb031177e2e)
