@@ -2,7 +2,7 @@ import torch
 import torch.nn as nn
 import torch.nn.functional as F
 
-dropout_value = 0.025
+dropout_value = 0.01
 
 class Model1(nn.Module):
     def __init__(self):
