@@ -21,7 +21,7 @@ class S8Model1(nn.Module):
         dropout_value = 0.02
         GROUP_SIZE = 8
 
-        super(Model1, self).__init__()
+        super(S8Model1, self).__init__()
 
         self.C1 = nn.Sequential(
             nn.Conv2d(3, 16, kernel_size=3, stride=1, padding=1, bias=False),
@@ -335,6 +335,9 @@ class Model4(nn.Module):
 
         return x
 
+
+
+
 # S6 Models
 
 class Net(nn.Module):
@@ -343,12 +346,12 @@ class Net(nn.Module):
         self.conv1 = nn.Sequential(
                         nn.Conv2d(in_channels=1, out_channels=8, kernel_size=3, padding=1),
                         nn.BatchNorm2d(8),
-                        nn.ReLU(inplace=True) 
+                        nn.ReLU(inplace=True)
                         )
         self.conv2 = nn.Sequential(
                         nn.Conv2d(in_channels=8, out_channels=8, kernel_size=3, padding=1),
                         nn.BatchNorm2d(8),
-                        nn.ReLU(inplace=True) 
+                        nn.ReLU(inplace=True)
                         )
         self.conv3 = nn.Sequential(
                         nn.Conv2d(in_channels=8, out_channels=8, kernel_size=3, padding=1),
@@ -381,7 +384,7 @@ class Net(nn.Module):
         self.conv8 = nn.Conv2d(32,10,1)
         self.av = nn.AvgPool2d(3)
 
-    
+
     def forward(self, x):
         x = self.conv1(x)
         x = self.conv2(x)
