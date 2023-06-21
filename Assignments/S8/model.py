@@ -19,7 +19,7 @@ class S8Model1(nn.Module):
     def __init__(self, norm='bn'):
 
         dropout_value = 0.02
-        GROUP_SIZE = 8
+        GROUP_SIZE = 2
 
         super(S8Model1, self).__init__()
 
