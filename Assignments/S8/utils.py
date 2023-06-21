@@ -107,7 +107,7 @@ def plot_graph():
 from PIL import Image
 
 def show_incorrect_images():
-    num_images = 12
+    num_images = 10
     num_rows = 2
     num_cols = (num_images + 1) // 2  # Adjust the number of columns based on the number of images
 
