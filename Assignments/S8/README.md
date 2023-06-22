@@ -5,6 +5,24 @@ This repository contains an implementation of a Convolutional Neural Network (CN
 ## Dataset
 CIFAR10
 
+## Receptive Field Calculation of the Model
+|             | r_in | n_in | j_in | s | r_out | n_out | j_out |  | kernal_size | padding |
+|-------------|------|------|------|---|-------|-------|-------|--|-------------|---------|
+| Conv        | 1    | 32   | 1    | 1 | 3     | 32    | 1     |  | 3           | 1       |
+| Conv        | 3    | 32   | 1    | 1 | 5     | 32    | 1     |  | 3           | 1       |
+| Conv        | 5    | 32   | 1    | 1 | 5     | 32    | 1     |  | 1           | 0       |
+| Max Pooling | 5    | 32   | 1    | 2 | 6     | 16    | 2     |  | 2           | 0       |
+| Conv        | 6    | 16   | 2    | 1 | 10    | 16    | 2     |  | 3           | 1       |
+| Conv        | 10   | 16   | 2    | 1 | 14    | 16    | 2     |  | 3           | 1       |
+| Conv        | 14   | 16   | 2    | 1 | 18    | 16    | 2     |  | 3           | 1       |
+| Conv        | 18   | 16   | 2    | 1 | 18    | 16    | 2     |  | 1           | 0       |
+| Max Pooling | 18   | 16   | 2    | 2 | 20    | 8     | 4     |  | 2           | 0       |
+| Conv        | 20   | 8    | 4    | 1 | 28    | 8     | 4     |  | 3           | 1       |
+| Conv        | 28   | 8    | 4    | 1 | 36    | 8     | 4     |  | 3           | 1       |
+| Conv        | 36   | 8    | 4    | 1 | 36    | 8     | 4     |  | 1           | 0       |
+| GAP         | 36   | 8    | 4    | 1 | 64    | 1     | 4     |  | 8           | 0       |
+| Conv        | 64   | 1    | 4    | 1 | 64    | 1     | 4     |  | 1           | 0       |
+
 # Batch Normalization
 ### Results:
 * Best Train Accuracy: 74.04
