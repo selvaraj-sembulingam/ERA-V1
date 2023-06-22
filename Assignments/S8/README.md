@@ -36,6 +36,10 @@ CIFAR10
 
 ## Findings
 
-Batch normalization seems to perform better than layer and group normalization. This is because batch normalization addresses the Internal Covariate Shift. Batch normalization introduces slight regularization effects. While the layer normalization does not consider the batch dimension and normalizes across the entire layer. For CNNs, where spatial and channel information is important, layer normalization may not capture the statistical variations effectively, which can lead to suboptimal performance when dealing with larger batch sizes. Also, Group normalization normalizes within groups of channels but does not consider the spatial dimensions.
-
-Hence Batch Normalization outperforms Layer and Group Normalization in CNNs.
+* Batch normalization seems to perform better than layer and group normalization.
+* This is because batch normalization addresses the Internal Covariate Shift.
+* Batch normalization introduces slight regularization effects.
+* While the layer normalization does not consider the batch dimension and normalizes across the entire layer.
+* For CNNs, where spatial and channel information is important, layer normalization may not capture the statistical variations effectively, which can lead to suboptimal performance when dealing with larger batch sizes.
+* Also, Group normalization normalizes within groups of channels but does not consider the spatial dimensions.
+* Hence Batch Normalization outperforms Layer and Group Normalization in CNNs.
