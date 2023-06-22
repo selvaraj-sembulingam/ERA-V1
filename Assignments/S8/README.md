@@ -61,3 +61,5 @@ CIFAR10
 * For CNNs, where spatial and channel information is important, layer normalization may not capture the statistical variations effectively, which can lead to suboptimal performance when dealing with larger batch sizes.
 * Also, Group normalization normalizes within groups of channels but does not consider the spatial dimensions.
 * Hence Batch Normalization outperforms Layer and Group Normalization in CNNs.
+
+* Note: A slight overfitting is still there in the model. This needs to be addressed with techniques like Image Augmentation etc
