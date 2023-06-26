@@ -1,0 +1,41 @@
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+
+class Model1(nn.Module):
+    def __init__(self):
+        super(Model1, self).__init__()
+        self.layer1 = nn.Sequential(
+            nn.Conv2d(3, 32, kernel_size=3, stride=1, bias=False),
+            nn.ReLU())
+        self.layer2 = nn.Sequential(
+            nn.Conv2d(32, 32, kernel_size=3, stride=1, bias=False),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size = 2, stride = 2))
+        self.layer3 = nn.Sequential(
+            nn.Conv2d(32, 64, kernel_size=3, stride=1, bias=False),
+            nn.ReLU())
+        self.layer4 = nn.Sequential(
+            nn.Conv2d(64, 64, kernel_size=3, stride=1, bias=False),
+            nn.ReLU(),
+            nn.MaxPool2d(kernel_size = 2, stride = 2))
+        self.layer5 = nn.Sequential(
+            nn.Conv2d(64, 128, kernel_size=3, stride=1, bias=False),
+            nn.ReLU())
+        self.layer6 = nn.Sequential(
+            nn.Conv2d(128, 10, kernel_size=1, stride=1, bias=False))
+        self.gap = nn.Sequential(
+            nn.AdaptiveAvgPool2d(1))
+
+    def forward(self, x):
+        x = self.layer1(x)
+        x = self.layer2(x)
+        x = self.layer3(x)
+        x = self.layer4(x)
+        x = self.layer5(x)
+        x = self.layer6(x)
+        x = self.gap(x)
+        x = x.view((x.shape[0],-1))
+        x = F.log_softmax(x, dim=1)
+
+        return x
