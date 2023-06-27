@@ -93,7 +93,7 @@ def train(model, train_loader, test_loader, device, optimizer, epochs, criterion
         "test_acc": []
     }
 
-    scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=1, threshold=1e-2, verbose=True, factor=0.5)
+    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=1, threshold=1e-2, verbose=True, factor=0.5)
 
     for epoch in range(epochs):
         print(f'Epoch {epoch}')
