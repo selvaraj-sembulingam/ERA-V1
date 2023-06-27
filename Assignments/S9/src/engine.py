@@ -71,7 +71,7 @@ def test_step(model, device, test_loader, criterion):
         100. * correct / len(test_loader.dataset)))
     return test_loss, test_acc, test_incorrect_pred
 
-def train(model, train_loader, test_loader, device, optimizer, epochs, criterion):
+def train(model, train_loader, test_loader, device, optimizer, epochs, criterion, scheduler):
 
     class_map = {
         0: 'airplane',
@@ -93,13 +93,11 @@ def train(model, train_loader, test_loader, device, optimizer, epochs, criterion
         "test_acc": []
     }
 
-    scheduler = torch.optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=1, threshold=1e-2, verbose=True, factor=0.5)
-
     for epoch in range(epochs):
         print(f'Epoch {epoch}')
         train_loss, train_acc = train_step(model=model, device=device, train_loader=train_loader, optimizer=optimizer, criterion=criterion)
         test_loss, test_acc, test_incorrect_pred = test_step(model=model, device=device, test_loader=test_loader, criterion=criterion)
-        scheduler.step(test_loss)
+        scheduler.step()
 
         # Update results dictionary
         results["train_loss"].append(train_loss)

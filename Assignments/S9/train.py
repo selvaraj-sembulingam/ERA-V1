@@ -3,11 +3,12 @@ import torch
 from src import data_setup, engine, model_builder, utils
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
+from torch.optim.lr_scheduler import OneCycleLR
 
 from torchvision import transforms
 
 # Setup hyperparameters
-NUM_EPOCHS = 20
+NUM_EPOCHS = 50
 BATCH_SIZE = 128
 LEARNING_RATE = 0.001
 MOMENTUM = 0.9
@@ -29,10 +30,6 @@ train_transforms = A.Compose([
     ToTensorV2() # Convert image to a PyTorch tensor
 ])
 
-#train_transforms = transforms.Compose([
-#                                       transforms.ToTensor(),
-#                                       transforms.Normalize((0.49139968, 0.48215827, 0.44653124), (0.24703233, 0.24348505, 0.26158768))
-#                                       ])
 
 # Test Phase transformations
 test_transforms = A.Compose([
@@ -40,10 +37,6 @@ test_transforms = A.Compose([
     ToTensorV2()  # Convert image to a PyTorch tensor
 ])
 
-#test_transforms = transforms.Compose([
-#                                       transforms.ToTensor(),
-#                                       transforms.Normalize((0.49139968, 0.48215827, 0.44653124), (0.24703233, 0.24348505, 0.26158768))
-#                                       ])
 
 # Create DataLoaders with help from data_setup.py
 train_dataloader, test_dataloader, class_names = data_setup.create_dataloaders(
@@ -59,7 +52,8 @@ model = model_builder.Model1().to(device)
 
 # Set loss and optimizer
 criterion = torch.nn.CrossEntropyLoss()
-optimizer = torch.optim.SGD(model.parameters(), lr=LEARNING_RATE, momentum=MOMENTUM)
+optimizer = torch.optim.SGD(model.parameters(), lr=LEARNING_RATE, momentum=MOMENTUM, weight_decay=1e-4)
+scheduler = OneCycleLR(optimizer, max_lr=0.1, total_steps=50, verbose=True)
 
 
 # Start training with help from engine.py
@@ -69,7 +63,8 @@ engine.train(model=model,
              criterion=criterion,
              optimizer=optimizer,
              epochs=NUM_EPOCHS,
-             device=device)
+             device=device,
+             scheduler=scheduler)
 
 # Save the model with help from utils.py
 utils.save_model(model=model,
