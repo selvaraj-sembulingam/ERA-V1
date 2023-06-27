@@ -93,7 +93,7 @@ def train(model, train_loader, test_loader, device, optimizer, epochs, criterion
         "test_acc": []
     }
 
-    
+
     for epoch in range(epochs):
         print(f'Epoch {epoch}')
         train_loss, train_acc = train_step(model=model, device=device, train_loader=train_loader, optimizer=optimizer, criterion=criterion)
