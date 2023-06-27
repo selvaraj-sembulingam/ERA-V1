@@ -93,11 +93,13 @@ def train(model, train_loader, test_loader, device, optimizer, epochs, criterion
         "test_acc": []
     }
 
+    scheduler = optim.lr_scheduler.ReduceLROnPlateau(optimizer, patience=1, threshold=1e-2, verbose=True, factor=0.5)
 
     for epoch in range(epochs):
         print(f'Epoch {epoch}')
         train_loss, train_acc = train_step(model=model, device=device, train_loader=train_loader, optimizer=optimizer, criterion=criterion)
         test_loss, test_acc, test_incorrect_pred = test_step(model=model, device=device, test_loader=test_loader, criterion=criterion)
+        scheduler.step(test_loss)
 
         # Update results dictionary
         results["train_loss"].append(train_loss)
