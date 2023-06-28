@@ -59,12 +59,32 @@ python train.py
 ![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/b5a6fc49-b574-4fac-a513-600313a212b9)
 
 
+### Data Augmentations Used
+1. Horizontal Flip
+2. ShiftScaleRotate
+3. CoarseDropout
+
 ## Training and Testing Results
+* Total Parameters: 150,866
 * Best Train Accuracy: 82.18
 * Best Test Accuracy: 86.78
 
 ![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/2bba9013-cc06-44d1-9546-c66b6875cb93)
 
+## Key Results
+1. Has the architecture to C1C2C3C40
+2. Used Dilated kernels here instead of MP or strided convolution in first block
+3. Total RF is more than 44 (79)
+4. One of the layers must use Depthwise Separable Convolution
+5. One of the layers must use Dilated Convolution
+6. Used GAP and added FC after GAP to target #of classes 
+7. Used albumentation library and applied
+       - horizontal flip
+       - shiftScaleRotate
+       - coarseDropout 
+8. Achieved more than 85% accuracy (86.78), in 50 epochs.
+9. Total Params to be less than 200k. (150,866)
+10. Created a modular code
 
 ## Incorrect Classified Images
 ![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/53c474ec-95a0-468a-9200-3a6a6aa76324)
