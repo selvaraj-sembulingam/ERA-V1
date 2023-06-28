@@ -14,7 +14,7 @@ class Model1(nn.Module):
             nn.ReLU(),
             nn.BatchNorm2d(8),
             nn.Dropout(dropout_value),
-            nn.Conv2d(8, 8, kernel_size=3, stride=1, bias=False, padding=1, dilation=2),
+            nn.Conv2d(8, 8, kernel_size=3, stride=1, bias=False, padding=1, dilation=2), # Used Dilated kernels here instead of MP or strided convolution
             nn.ReLU(),
             nn.BatchNorm2d(8),
             nn.Dropout(dropout_value))
@@ -45,7 +45,7 @@ class Model1(nn.Module):
             nn.BatchNorm2d(32),
             nn.Dropout(dropout_value))
         self.block4 = nn.Sequential(
-            nn.Conv2d(32, 32, kernel_size=3, stride=1, bias=False, padding=1, groups=32),
+            nn.Conv2d(32, 32, kernel_size=3, stride=1, bias=False, padding=1, groups=32),  # Used Depthwise separable convolution
             nn.Conv2d(32, 64, kernel_size=1, stride=1, bias=False),
             nn.ReLU(),
             nn.BatchNorm2d(64),
@@ -59,9 +59,9 @@ class Model1(nn.Module):
             nn.BatchNorm2d(64),
             nn.Dropout(dropout_value))
         self.gap = nn.Sequential(
-            nn.AdaptiveAvgPool2d(1))
+            nn.AdaptiveAvgPool2d(1))  # Used GAP
         self.block5 = nn.Sequential(
-          nn.Linear(64, 128),
+          nn.Linear(64, 128), # Used FC
           nn.Linear(128, 256),
           nn.Linear(256, 10)
         )
