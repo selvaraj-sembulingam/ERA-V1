@@ -44,6 +44,8 @@ python train.py
 ## Convolutions
 
 ### Normal Convolution
+![1_d03OGSWsBqAKBTP2QSvi3g](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/9ff2d277-e8bc-46a9-8df1-1e2479038d7f)
+
 
 ### Strided Convolution (stride = 2)
 ![1_NrsBkY8ujrGlq83f8FR2wQ](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/c5e1502f-1f8a-4c9e-8f7a-1f924dd690ad)
@@ -51,6 +53,10 @@ python train.py
 
 ### Dilated Convolution (dilation=2)
 ![1_niGh2BkLuAUS2lkctkd3sA](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/a55d83cb-482f-4995-aab6-036f6be55066)
+
+
+### Depthwise Separable Convolution
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/b5a6fc49-b574-4fac-a513-600313a212b9)
 
 
 ## Training and Testing Results
@@ -62,3 +68,8 @@ python train.py
 
 ## Incorrect Classified Images
 ![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/53c474ec-95a0-468a-9200-3a6a6aa76324)
+
+
+## References
+* https://towardsdatascience.com/a-comprehensive-introduction-to-different-types-of-convolutions-in-deep-learning-669281e58215
+* https://www.learnpytorch.io/05_pytorch_going_modular/
