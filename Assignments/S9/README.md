@@ -1,4 +1,4 @@
-# CIFAR10
+# Advanced Convolutions and Data Augmentation
 
 ## Folder Structure
 ```
@@ -41,6 +41,15 @@ python train.py
 |Conv |43|8|4|1|51|8|4| |3|1|
 |GAP|51|8|4|1|79|1|4| |8|0|
 
+## Convolutions
+
+### Normal Convolution
+
+### Strided Convolution (stride = 2)
+https://miro.medium.com/v2/resize:fit:640/1*NrsBkY8ujrGlq83f8FR2wQ.gif
+
+### Dilated Convolution (dilation=2)
+https://miro.medium.com/v2/resize:fit:640/1*niGh2BkLuAUS2lkctkd3sA.gif
 
 ## Training and Testing Results
 * Best Train Accuracy: 82.18
