@@ -19,6 +19,7 @@
 
 ## How to Run the code
 Clone the repo and run
+Change your current directory to S9
 ```
 python train.py
 ```
