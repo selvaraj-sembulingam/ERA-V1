@@ -3,6 +3,8 @@ from pathlib import Path
 from PIL import Image
 import matplotlib.pyplot as plt
 import numpy as np
+from src.model_builder import Model1 as Net
+from torchsummary import summary
 
 def save_model(model, target_dir, model_name):
   """Saves a PyTorch model to a target directory.
@@ -33,7 +35,7 @@ def save_model(model, target_dir, model_name):
              f=model_save_path)
 
 def plot_graph(train_losses, test_losses, train_acc, test_acc):
-    fig, axs = plt.subplots(1, 2, figsize=(15, 6))
+    fig, axs = plt.subplots(1, 2, figsize=(20, 6))
 
     # Plot Train and Test Loss
     axs[0].plot(train_losses, label='Train Loss')
@@ -58,7 +60,7 @@ def show_incorrect_images(test_incorrect_pred, class_map):
     num_rows = 2
     num_cols = (num_images + 1) // 2  # Adjust the number of columns based on the number of images
 
-    fig, axs = plt.subplots(num_rows, num_cols, figsize=(num_cols * 2, num_rows * 2))
+    fig, axs = plt.subplots(num_rows, num_cols, figsize=(num_cols * 4, num_rows * 4))
 
     for i in range(num_images):
         row_idx = i // num_cols
@@ -75,3 +77,10 @@ def show_incorrect_images(test_incorrect_pred, class_map):
         axs[row_idx, col_idx].axis('off')
 
     plt.savefig("models/incorrect_images.png")
+
+
+def model_summary():
+    use_cuda = torch.cuda.is_available()
+    device = torch.device("cuda" if use_cuda else "cpu")
+    model = Net().to(device)
+    summary(model, input_size=(3, 32, 32))
