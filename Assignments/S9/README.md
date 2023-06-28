@@ -1,7 +1,27 @@
 # CIFAR10
 
+## Folder Structure
+```
+└── README.md
+└── src/
+    └── data_setup.py
+    └── utils.py
+    └── engine.py
+    └── model_builder.py
+    └── model
+└── models/
+    └── S9Model1.pth
+    └── incorrect_images.png
+    └── loss_accuracy_plot.png
+└── train.py
+└── S9.ipynb
+```
 
-
+## How to Run the code
+Clone the repo and run
+```
+python train.py
+```
 
 ## Receptive Field Calculations
 | |r_in|n_in|j_in|s|r_out|n_out|j_out| |kernal_size|padding|
@@ -19,3 +39,14 @@
 |Conv|35|8|4|1|43|8|4| |3|1|
 |Conv |43|8|4|1|51|8|4| |3|1|
 |GAP|51|8|4|1|79|1|4| |8|0|
+
+
+## Training and Testing Results
+* Best Train Accuracy: 82.18
+* Best Test Accuracy: 86.78
+
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/2bba9013-cc06-44d1-9546-c66b6875cb93)
+
+
+## Incorrect Classified Images
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/53c474ec-95a0-468a-9200-3a6a6aa76324)
