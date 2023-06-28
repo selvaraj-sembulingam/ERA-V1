@@ -1,5 +1,7 @@
 # Advanced Convolutions and Data Augmentation
 
+This folder contains an implementation of a Convolutional Neural Network (CNN) using some of the advanced convolutions and data augmentation techniques on CIFAR10 dataset. 
+
 ## Folder Structure
 ```
 └── README.md
