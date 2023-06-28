@@ -46,10 +46,12 @@ python train.py
 ### Normal Convolution
 
 ### Strided Convolution (stride = 2)
-https://miro.medium.com/v2/resize:fit:640/1*NrsBkY8ujrGlq83f8FR2wQ.gif
+![1_NrsBkY8ujrGlq83f8FR2wQ](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/c5e1502f-1f8a-4c9e-8f7a-1f924dd690ad)
+
 
 ### Dilated Convolution (dilation=2)
-https://miro.medium.com/v2/resize:fit:640/1*niGh2BkLuAUS2lkctkd3sA.gif
+![1_niGh2BkLuAUS2lkctkd3sA](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/a55d83cb-482f-4995-aab6-036f6be55066)
+
 
 ## Training and Testing Results
 * Best Train Accuracy: 82.18
