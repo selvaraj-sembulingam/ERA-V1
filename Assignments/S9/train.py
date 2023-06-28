@@ -8,7 +8,7 @@ from torch.optim.lr_scheduler import OneCycleLR
 from torchvision import transforms
 
 # Setup hyperparameters
-NUM_EPOCHS = 50
+NUM_EPOCHS = 30
 BATCH_SIZE = 128
 LEARNING_RATE = 0.001
 MOMENTUM = 0.9
@@ -53,7 +53,7 @@ model = model_builder.Model1().to(device)
 # Set loss and optimizer
 criterion = torch.nn.CrossEntropyLoss()
 optimizer = torch.optim.SGD(model.parameters(), lr=LEARNING_RATE, momentum=MOMENTUM, weight_decay=1e-4)
-scheduler = OneCycleLR(optimizer, max_lr=0.1, total_steps=50, verbose=True)
+scheduler = OneCycleLR(optimizer, max_lr=0.1, total_steps=NUM_EPOCHS, verbose=True)
 
 
 # Start training with help from engine.py

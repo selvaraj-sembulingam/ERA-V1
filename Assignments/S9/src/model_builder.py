@@ -14,7 +14,7 @@ class Model1(nn.Module):
             nn.ReLU(),
             nn.BatchNorm2d(8),
             nn.Dropout(dropout_value),
-            nn.Conv2d(8, 8, kernel_size=3, stride=2, bias=False, padding=1),
+            nn.Conv2d(8, 8, kernel_size=3, stride=1, bias=False, padding=1, dilation=2),
             nn.ReLU(),
             nn.BatchNorm2d(8),
             nn.Dropout(dropout_value))
@@ -59,12 +59,14 @@ class Model1(nn.Module):
             nn.Dropout(dropout_value))
         self.gap = nn.Sequential(
             nn.AdaptiveAvgPool2d(1))
+        #self.block5 = nn.Sequential(
+        #    nn.Conv2d(64, 128, kernel_size=1, stride=1, bias=False),
+        #    nn.Conv2d(128, 10, kernel_size=1, stride=1, bias=False))
         self.block5 = nn.Sequential(
-            nn.Conv2d(64, 128, kernel_size=1, stride=1, bias=False),
-            nn.ReLU(),
-            nn.BatchNorm2d(128),
-            nn.Dropout(dropout_value),
-            nn.Conv2d(128, 10, kernel_size=1, stride=1, bias=False))
+          nn.Linear(64, 128),
+          nn.Linear(128, 256),
+          nn.Linear(256, 10)
+        )
 
     def forward(self, x):
         x = self.block1(x)
@@ -72,7 +74,8 @@ class Model1(nn.Module):
         x = self.block3(x)
         x = self.block4(x)
         x = self.gap(x)
-        x = self.block5(x)
+        
         x = x.view((x.shape[0],-1))
+        x = self.block5(x)
         x = F.log_softmax(x, dim=1)
         return x
