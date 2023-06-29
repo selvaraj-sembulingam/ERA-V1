@@ -10,7 +10,6 @@ This folder contains an implementation of a Convolutional Neural Network (CNN) u
     └── utils.py
     └── engine.py
     └── model_builder.py
-    └── model
 └── models/
     └── S9Model1.pth
     └── incorrect_images.png
