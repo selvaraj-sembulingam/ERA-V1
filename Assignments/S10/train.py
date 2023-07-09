@@ -64,7 +64,7 @@ lr_finder.reset() # to reset the model and optimizer to their initial state
 scheduler = OneCycleLR(
         optimizer,
         max_lr=MAX_LR,
-        steps_per_epoch=len(train_loader),
+        steps_per_epoch=len(train_dataloader),
         epochs=NUM_EPOCHS,
         pct_start=5/NUM_EPOCHS,
         div_factor=100,
