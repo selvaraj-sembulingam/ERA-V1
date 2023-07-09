@@ -14,11 +14,6 @@ def save_model(model, target_dir, model_name):
     target_dir: A directory for saving the model to.
     model_name: A filename for the saved model. Should include
       either ".pth" or ".pt" as the file extension.
-
-  Example usage:
-    save_model(model=model_0,
-               target_dir="models",
-               model_name="05_going_modular_tingvgg_model.pth")
   """
   # Create target directory
   target_dir_path = Path(target_dir)
@@ -53,7 +48,7 @@ def plot_graph(train_losses, test_losses, train_acc, test_acc):
     axs[1].set_ylabel("Accuracy")
     axs[1].legend()
 
-    plt.savefig("models/loss_accuracy_plot.png")
+    plt.savefig("results/loss_accuracy_plot.png")
 
 def show_incorrect_images(test_incorrect_pred, class_map):
     num_images = 10
@@ -76,7 +71,7 @@ def show_incorrect_images(test_incorrect_pred, class_map):
         axs[row_idx, col_idx].set_title(f'GT: {class_map[label]}, Pred: {class_map[pred]}')
         axs[row_idx, col_idx].axis('off')
 
-    plt.savefig("models/incorrect_images.png")
+    plt.savefig("results/incorrect_images.png")
 
 
 def model_summary():
