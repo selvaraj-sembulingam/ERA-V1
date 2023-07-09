@@ -7,9 +7,9 @@ from torch.optim.lr_scheduler import OneCycleLR
 from torchvision import transforms
 
 # Setup hyperparameters
-NUM_EPOCHS = 50
-BATCH_SIZE = 128
-LEARNING_RATE = 0.001
+NUM_EPOCHS = 24
+BATCH_SIZE = 512
+LEARNING_RATE = 0.03
 MOMENTUM = 0.9
 MAX_LR = 0.1
 WEIGHT_DECAY = 1e-4
@@ -24,9 +24,9 @@ device = "cuda" if torch.cuda.is_available() else "cpu"
 # Create transforms
 # Train Phase transformations
 train_transforms = A.Compose([
-    A.HorizontalFlip(),
-    A.ShiftScaleRotate(shift_limit=0.1, scale_limit=0.2, rotate_limit=10, p=0.5),
-    A.CoarseDropout(max_holes=1, max_height=16, max_width=16, min_holes=1, min_height=16, min_width=16, fill_value=(0.49139968, 0.48215827, 0.44653124), mask_fill_value=None),  # Apply coarse dropout
+    #A.HorizontalFlip(),
+    #A.ShiftScaleRotate(shift_limit=0.1, scale_limit=0.2, rotate_limit=10, p=0.5),
+    #A.CoarseDropout(max_holes=1, max_height=16, max_width=16, min_holes=1, min_height=16, min_width=16, fill_value=(0.49139968, 0.48215827, 0.44653124), mask_fill_value=None),  # Apply coarse dropout
     A.Normalize(mean=[0.49139968, 0.48215827, 0.44653124], std=[0.24703233, 0.24348505, 0.26158768]),  # Normalize the image
     ToTensorV2() # Convert image to a PyTorch tensor
 ])
@@ -53,9 +53,18 @@ model = custom_resnet.CustomResNet().to(device)
 
 # Set loss and optimizer
 criterion = torch.nn.CrossEntropyLoss()
-optimizer = torch.optim.SGD(model.parameters(), lr=LEARNING_RATE, momentum=MOMENTUM, weight_decay=WEIGHT_DECAY)
-scheduler = OneCycleLR(optimizer, max_lr=MAX_LR, total_steps=NUM_EPOCHS, verbose=True)
-
+optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE, weight_decay=WEIGHT_DECAY)
+scheduler = OneCycleLR(
+        optimizer,
+        max_lr=MAX_LR,
+        steps_per_epoch=len(train_loader),
+        epochs=NUM_EPOCHS,
+        pct_start=5/NUM_EPOCHS,
+        div_factor=100,
+        three_phase=False,
+        final_div_factor=100,
+        anneal_strategy='linear'
+    )
 
 # Start training with help from engine.py
 engine.train(model=model,
