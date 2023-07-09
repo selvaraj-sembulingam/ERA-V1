@@ -1,6 +1,6 @@
 import os
 import torch
-from src import data_setup, engine, model_builder, utils
+from src import data_setup, engine, custom_resnet, utils
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
 from torch.optim.lr_scheduler import OneCycleLR
@@ -48,8 +48,8 @@ train_dataloader, test_dataloader, class_names = data_setup.create_dataloaders(
     batch_size=BATCH_SIZE
 )
 
-# Create model with help from model_builder.py
-model = model_builder.Model1().to(device)
+# Create model with help from custom_resnet.py
+model = custom_resnet.CustomResNet().to(device)
 
 # Set loss and optimizer
 criterion = torch.nn.CrossEntropyLoss()
