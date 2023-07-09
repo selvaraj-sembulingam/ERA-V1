@@ -7,7 +7,7 @@ from torch.optim.lr_scheduler import OneCycleLR
 from torchvision import transforms
 from torch_lr_finder import LRFinder
 import matplotlib
-matplotlib.use('GTK') 
+
 
 # Setup hyperparameters
 NUM_EPOCHS = 24
