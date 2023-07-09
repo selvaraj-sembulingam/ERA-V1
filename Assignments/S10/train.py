@@ -70,4 +70,4 @@ engine.train(model=model,
 # Save the model with help from utils.py
 utils.save_model(model=model,
                  target_dir="models",
-                 model_name="S9Model1.pth")
+                 model_name="CustomResNet.pth")
