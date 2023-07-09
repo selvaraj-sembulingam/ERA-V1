@@ -54,6 +54,12 @@ model = custom_resnet.CustomResNet().to(device)
 # Set loss and optimizer
 criterion = torch.nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE, weight_decay=WEIGHT_DECAY)
+
+lr_finder = LRFinder(model, optimizer, criterion, device="cuda")
+lr_finder.range_test(train_dataloader, end_lr=10, num_iter=200, step_mode="exp")
+lr_finder.plot() # to inspect the loss-learning rate graph
+lr_finder.reset() # to reset the model and optimizer to their initial state
+
 scheduler = OneCycleLR(
         optimizer,
         max_lr=MAX_LR,
