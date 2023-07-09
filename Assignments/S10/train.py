@@ -5,17 +5,15 @@ import albumentations as A
 from albumentations.pytorch import ToTensorV2
 from torch.optim.lr_scheduler import OneCycleLR
 from torchvision import transforms
-from torch_lr_finder import LRFinder
-import matplotlib.pyplot as plt
 
-
+torch.manual_seed(1)
 
 # Setup hyperparameters
 NUM_EPOCHS = 24
 BATCH_SIZE = 512
 LEARNING_RATE = 0.03
 MOMENTUM = 0.9
-MAX_LR = 5.22E-02
+MAX_LR = 4.79E-02
 WEIGHT_DECAY = 1e-4
 
 # Setup directories
@@ -58,13 +56,6 @@ model = custom_resnet.CustomResNet().to(device)
 # Set loss and optimizer
 criterion = torch.nn.CrossEntropyLoss()
 optimizer = torch.optim.Adam(model.parameters(), lr=LEARNING_RATE, weight_decay=WEIGHT_DECAY)
-
-lr_finder = LRFinder(model, optimizer, criterion, device="cuda")
-lr_finder.range_test(train_dataloader, end_lr=10, num_iter=200, step_mode="exp")
-lr_finder.plot() # to inspect the loss-learning rate graph
-plt.savefig("results/lr_finder_plot.png")
-lr_finder.reset() # to reset the model and optimizer to their initial state
-
 scheduler = OneCycleLR(
         optimizer,
         max_lr=MAX_LR,
