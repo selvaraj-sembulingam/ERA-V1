@@ -6,6 +6,8 @@ from albumentations.pytorch import ToTensorV2
 from torch.optim.lr_scheduler import OneCycleLR
 from torchvision import transforms
 from torch_lr_finder import LRFinder
+import matplotlib.pyplot as plt
+
 
 
 # Setup hyperparameters
