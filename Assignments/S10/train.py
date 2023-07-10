@@ -29,7 +29,7 @@ train_transforms = A.Compose([
     A.PadIfNeeded(min_height=32 + 4, min_width=32 + 4, p=1),
     A.RandomCrop(32, 32),
     A.HorizontalFlip(),
-    A.CoarseDropout(max_holes=1, max_height=8, max_width=8, min_holes=1, min_height=8, min_width=8, fill_value=(0.49139968, 0.48215827, 0.44653124), mask_fill_value=None),  # Apply coarse dropout
+    A.CoarseDropout(max_holes=1, max_height=8, max_width=8, min_holes=1, min_height=8, min_width=8, fill_value=(0.49139968, 0.48215827, 0.44653124), p=1),  # Apply coarse dropout
     A.Normalize(mean=[0.49139968, 0.48215827, 0.44653124], std=[0.24703233, 0.24348505, 0.26158768]),  # Normalize the image
     ToTensorV2() # Convert image to a PyTorch tensor
 ])
