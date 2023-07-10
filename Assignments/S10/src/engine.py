@@ -97,8 +97,9 @@ def train(model, train_loader, test_loader, device, optimizer, epochs, criterion
         lr = optimizer.param_groups[0]['lr']
         print(f'Epoch {epoch}, Learning Rate: {lr}')
         train_loss, train_acc = train_step(model=model, device=device, train_loader=train_loader, optimizer=optimizer, criterion=criterion)
-        test_loss, test_acc, test_incorrect_pred = test_step(model=model, device=device, test_loader=test_loader, criterion=criterion)
         scheduler.step()
+        test_loss, test_acc, test_incorrect_pred = test_step(model=model, device=device, test_loader=test_loader, criterion=criterion)
+        
 
         # Update results dictionary
         results["train_loss"].append(train_loss)
