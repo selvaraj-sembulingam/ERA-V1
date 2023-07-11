@@ -66,8 +66,7 @@ scheduler = OneCycleLR(
         div_factor=100,
         three_phase=False,
         final_div_factor=100,
-        anneal_strategy='linear',
-        verbose=True
+        anneal_strategy='linear'
     )
 
 # Start training with help from engine.py
