@@ -6,7 +6,7 @@ from tqdm.auto import tqdm
 def GetCorrectPredCount(pPrediction, pLabels):
   return pPrediction.argmax(dim=1).eq(pLabels).sum().item()
 
-def train_step(model, device, train_loader, optimizer, criterion):
+def train_step(model, device, train_loader, optimizer, criterion, scheduler):
   model.train()
   pbar = tqdm(train_loader)
 
@@ -33,6 +33,7 @@ def train_step(model, device, train_loader, optimizer, criterion):
     processed += len(data)
 
     pbar.set_description(desc= f'Train: Loss={loss.item():0.4f} Batch_id={batch_idx} Accuracy={100*correct/processed:0.2f}')
+    scheduler.step()
 
   train_acc = 100*correct/processed
   return train_loss, train_acc
@@ -96,9 +97,8 @@ def train(model, train_loader, test_loader, device, optimizer, epochs, criterion
     for epoch in range(epochs):
         lr = optimizer.param_groups[0]['lr']
         print(f'Epoch {epoch}, Learning Rate: {lr}')
-        train_loss, train_acc = train_step(model=model, device=device, train_loader=train_loader, optimizer=optimizer, criterion=criterion)
+        train_loss, train_acc = train_step(model=model, device=device, train_loader=train_loader, optimizer=optimizer, criterion=criterion, scheduler=scheduler)
         test_loss, test_acc, test_incorrect_pred = test_step(model=model, device=device, test_loader=test_loader, criterion=criterion)
-        scheduler.step()
         
 
         # Update results dictionary
