@@ -11,7 +11,7 @@ torch.manual_seed(1)
 # Setup hyperparameters
 NUM_EPOCHS = 24
 BATCH_SIZE = 512
-LEARNING_RATE = 0.03
+LEARNING_RATE = 4.79E-02
 MOMENTUM = 0.9
 MAX_LR = 4.79E-02
 WEIGHT_DECAY = 1e-4
