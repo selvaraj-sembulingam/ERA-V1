@@ -77,12 +77,13 @@ Estimated Total Size (MB): 31.53
 
 ## Incorrect Classified Images
 
-![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/adf53d42-9b2e-4b33-bba0-8ded5c582a1f)
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/519d7bbb-b96f-4a9d-a9c6-6d1e2103fc3c)
 
 
 ## Loss Accuracy Plot
 
-![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/6b931803-08df-4d16-9e03-0d3514213c8d)
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/ebdff881-ebaf-40bd-bb1c-edcaa22c2431)
+
 
 
 ## Key Achievements
