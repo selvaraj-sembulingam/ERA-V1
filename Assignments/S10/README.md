@@ -1,4 +1,4 @@
-# ResNet
+# Residual CNN Model
 
 This folder contains an implementation of a Custom ResNet model
 
@@ -75,5 +75,18 @@ Estimated Total Size (MB): 31.53
 ----------------------------------------------------------------
 ```
 
+## Incorrect Classified Images
 
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/adf53d42-9b2e-4b33-bba0-8ded5c582a1f)
+
+
+## Loss Accuracy Plot
+
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/6b931803-08df-4d16-9e03-0d3514213c8d)
+
+
+## Key Achievements
+* 90% Training Accuracy within 24 epochs using OneCycle LR
+* Implemented Model with Residual Connections
+* Used Image Augmentations to remove overfitting
 
