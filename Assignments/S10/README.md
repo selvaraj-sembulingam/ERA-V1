@@ -87,7 +87,7 @@ Estimated Total Size (MB): 31.53
 
 
 ## Key Achievements
-* 90% Training Accuracy within 24 epochs using OneCycle LR
+* 92.53% Training Accuracy within 24 epochs using OneCycle LR
 * Implemented Model with Residual Connections
 * Used Image Augmentations to remove overfitting
 
