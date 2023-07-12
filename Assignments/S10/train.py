@@ -14,7 +14,7 @@ BATCH_SIZE = 512
 LEARNING_RATE = 0.03
 MOMENTUM = 0.9
 MAX_LR = 4.79E-02
-WEIGHT_DECAY = 1e-4
+WEIGHT_DECAY = 1e-3
 
 # Setup directories
 train_dir = "../data"
