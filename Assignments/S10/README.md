@@ -10,7 +10,7 @@ This folder contains an implementation of a Custom ResNet model
     └── utils.py
     └── engine.py
     └── custom_resnet.py
-└── models/
+└── results/
     └── CustomResNet.pth
     └── incorrect_images.png
     └── loss_accuracy_plot.png
