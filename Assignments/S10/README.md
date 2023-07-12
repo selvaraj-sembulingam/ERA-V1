@@ -27,6 +27,14 @@ python train.py
 ```
 
 ## OneCycle LR
+
+```
+lr_finder = LRFinder(model, optimizer, criterion, device="cuda")
+lr_finder.range_test(train_loader, end_lr=10, num_iter=200, step_mode="exp")
+lr_finder.plot() # to inspect the loss-learning rate graph
+lr_finder.reset() # to reset the model and optimizer to their initial state
+```
+
 ![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/40bbedb3-33ed-491b-a0d4-0015d115590f)
 
 ## Model Summary
