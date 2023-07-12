@@ -14,6 +14,7 @@ This folder contains an implementation of a Custom ResNet model
     └── CustomResNet.pth
     └── incorrect_images.png
     └── loss_accuracy_plot.png
+    └── lr_finder_plot.png
 └── train.py
 └── S9.ipynb
 ```
