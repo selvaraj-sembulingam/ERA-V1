@@ -112,7 +112,7 @@ def plot_graph(train_losses, test_losses, train_acc, test_acc):
 
     plt.savefig("results/loss_accuracy_plot.png")
 
-def show_incorrect_images(model, test_incorrect_pred, class_map, grad_cam=False):
+def show_incorrect_images(test_incorrect_pred, class_map, grad_cam=False, model=None):
     num_images = 10
     num_rows = 2
     num_cols = (num_images + 1) // 2  # Adjust the number of columns based on the number of images
