@@ -71,7 +71,7 @@ def test_step(model, device, test_loader, criterion):
 
     print('Test set: Loss: {:.4f}, Accuracy: {}/{} ({:.2f}%)\n'.format(
         test_loss, correct, processed,
-        test_acc)
+        test_acc))
     return test_loss, test_acc, test_incorrect_pred
 
 def train(model, train_loader, test_loader, device, optimizer, epochs, criterion, scheduler):
