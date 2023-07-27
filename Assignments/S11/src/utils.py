@@ -7,6 +7,7 @@ from src.models.resnet import ResNet18 as Net
 from torchsummary import summary
 from pytorch_grad_cam import GradCAM
 from pytorch_grad_cam.utils.image import show_cam_on_image
+from pytorch_grad_cam.utils.model_targets import ClassifierOutputTarget
 
 def save_model(model, target_dir, model_name):
   """Saves a PyTorch model to a target directory.
@@ -81,7 +82,7 @@ def show_incorrect_images(model, test_incorrect_pred, class_map, grad_cam=False)
           cam = GradCAM(model=model, target_layers=[model.layer3[-1]])
   
           # Get the target class output (here, the ground truth class)
-          target_class = [label]
+          target_class = [ClassifierOutputTarget(label)]
   
           # Compute the GradCAM heatmap
           grayscale_cam = cam(input_tensor=input_image, targets=target_class)
