@@ -108,7 +108,7 @@ def train(model, train_loader, test_loader, device, optimizer, epochs, criterion
         results["test_acc"].append(test_acc)
 
     plot_graph(results["train_loss"], results["test_loss"], results["train_acc"], results["test_acc"])
-    show_incorrect_images(test_incorrect_pred, class_map)
+    show_incorrect_images(model, test_incorrect_pred, class_map, grad_cam=True)
 
     # Return the filled results at the end of the epochs
     return results
