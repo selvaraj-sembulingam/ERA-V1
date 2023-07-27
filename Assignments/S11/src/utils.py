@@ -145,7 +145,7 @@ def show_incorrect_images(model, test_incorrect_pred, class_map, grad_cam=False)
           # Create a GradCamWrapper object
           cam_wrapper = GradCamWrapper(
               model=model,
-              target_layers=[model.layer_name_for_gradcam],
+              target_layers=[model.layer3[-1]],
               device='cuda' if torch.cuda.is_available() else 'cpu',
               targets=[label],  # Assuming the ground truth is the target class
               image_tensor=input_image,
