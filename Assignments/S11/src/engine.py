@@ -37,9 +37,7 @@ def train_step(model, device, train_loader, optimizer, criterion, scheduler):
 
   train_acc=100*correct/processed
   train_loss=train_loss/processed
-  
-  print(train_loss)
-    
+
   return train_loss, train_acc
 
 def test_step(model, device, test_loader, criterion):
