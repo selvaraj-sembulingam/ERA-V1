@@ -35,8 +35,8 @@ def train_step(model, device, train_loader, optimizer, criterion, scheduler):
     pbar.set_description(desc= f'Train: Loss={loss.item():0.4f} Batch_id={batch_idx} Accuracy={100*correct/processed:0.2f}')
     scheduler.step()
     
-  train_loss /= processed
-  train_acc = 100*correct/processed
+  train_acc=100*correct/processed
+  train_loss=train_loss/len(train_loader)
   return train_loss, train_acc
 
 def test_step(model, device, test_loader, criterion):
@@ -65,9 +65,8 @@ def test_step(model, device, test_loader, criterion):
             correct += GetCorrectPredCount(output, target)
             processed += len(data)
 
-    test_loss /= processed
-    test_acc = 100*correct/processed
-
+    test_loss /= len(test_loader.dataset)
+    test_acc = 100. * correct / len(test_loader.dataset)
 
     print('Test set: Loss: {:.4f}, Accuracy: {}/{} ({:.2f}%)\n'.format(
         test_loss, correct, processed,
