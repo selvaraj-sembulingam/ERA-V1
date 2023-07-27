@@ -24,6 +24,10 @@ test_dir = "../data"
 # Setup target device
 device = "cuda" if torch.cuda.is_available() else "cpu"
 
+# Create a dir to store results
+if not os.path.exists("results"):
+    os.makedirs("results")
+
 # Create transforms
 # Train Phase transformations
 train_transforms = A.Compose([
