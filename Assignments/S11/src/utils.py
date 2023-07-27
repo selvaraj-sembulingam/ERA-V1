@@ -81,7 +81,7 @@ def show_incorrect_images(model, test_incorrect_pred, class_map, grad_cam=False)
           cam = GradCAM(model=model, target_layers=[model.layer3[-1]])
   
           # Get the target class output (here, the ground truth class)
-          target_class = label
+          target_class = [label]
   
           # Compute the GradCAM heatmap
           grayscale_cam = cam(input_tensor=input_image, targets=target_class)
