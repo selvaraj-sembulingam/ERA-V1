@@ -10,7 +10,7 @@ from torchvision import transforms
 torch.manual_seed(1)
 
 # Setup hyperparameters
-NUM_EPOCHS = 24
+NUM_EPOCHS = 20
 BATCH_SIZE = 512
 LEARNING_RATE = 0.03
 MOMENTUM = 0.9
