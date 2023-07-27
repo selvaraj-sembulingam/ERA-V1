@@ -78,7 +78,7 @@ def show_incorrect_images(model, test_incorrect_pred, class_map, grad_cam=False)
           input_image = test_incorrect_pred['images'][i].unsqueeze(0)
   
           # Create a GradCAM object
-          cam = GradCAM(model=model, target_layer=model.layer3[-1])
+          cam = GradCAM(model=model, target_layers=[model.layer3[-1]])
   
           # Get the target class output (here, the ground truth class)
           target_class = label
