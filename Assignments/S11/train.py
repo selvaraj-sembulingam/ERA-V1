@@ -83,4 +83,4 @@ engine.train(model=model,
 # Save the model with help from utils.py
 utils.save_model(model=model,
                  target_dir="results",
-                 model_name="CustomResNet.pth")
+                 model_name="ResNet18.pth")
