@@ -36,7 +36,7 @@ def train_step(model, device, train_loader, optimizer, criterion, scheduler):
     scheduler.step()
 
   train_acc=100*correct/processed
-  train_loss=train_loss/len(train_loader)
+  train_loss=train_loss/processed
   
   print(train_loss)
     
@@ -68,8 +68,8 @@ def test_step(model, device, test_loader, criterion):
             correct += GetCorrectPredCount(output, target)
             processed += len(data)
 
-    test_loss /= len(test_loader.dataset)
-    test_acc = 100. * correct / len(test_loader.dataset)
+    test_loss /= processed
+    test_acc = 100. * correct / processed
 
     print('Test set: Loss: {:.4f}, Accuracy: {}/{} ({:.2f}%)\n'.format(
         test_loss, correct, processed,
