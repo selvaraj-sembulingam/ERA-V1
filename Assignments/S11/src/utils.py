@@ -84,7 +84,7 @@ def show_incorrect_images(model, test_incorrect_pred, class_map, grad_cam=False)
           target_class = label
   
           # Compute the GradCAM heatmap
-          grayscale_cam = cam(input_tensor=input_image, target_category=target_class)
+          grayscale_cam = cam(input_tensor=input_image, targets=target_class)
   
           # Convert the heatmap to a color map and overlay it on the image
           visualization = show_cam_on_image(img, grayscale_cam)
