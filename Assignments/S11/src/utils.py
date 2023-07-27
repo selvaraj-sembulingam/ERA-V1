@@ -8,15 +8,7 @@ from torchsummary import summary
 
 from dataclasses import dataclass, field
 from typing import Any, Callable, List, Optional, Tuple, Union
-
-import cv2
-import matplotlib.pyplot as plt
-import numpy as np
-import PIL
 import torch.nn as nn
-import torchinfo
-import torchvision
-import torchvision.transforms as T
 from pytorch_grad_cam import GradCAM
 from pytorch_grad_cam.utils.image import show_cam_on_image
 from pytorch_grad_cam.utils.model_targets import ClassifierOutputTarget
@@ -137,9 +129,10 @@ def show_incorrect_images(model, test_incorrect_pred, class_map, grad_cam=False)
         label = test_incorrect_pred['ground_truths'][i].cpu().item()
         pred = test_incorrect_pred['predicted_vals'][i].cpu().item()
 
-        #axs[row_idx, col_idx].imshow(img)
-        #axs[row_idx, col_idx].set_title(f'GT: {class_map[label]}, Pred: {class_map[pred]}')
-        #axs[row_idx, col_idx].axis('off')
+        if not grad_cam:
+            axs[row_idx, col_idx].imshow(img)
+            axs[row_idx, col_idx].set_title(f'GT: {class_map[label]}, Pred: {class_map[pred]}')
+            axs[row_idx, col_idx].axis('off')
 
         if grad_cam:
             input_image = test_incorrect_pred['images'][i].unsqueeze(0)
@@ -162,11 +155,13 @@ def show_incorrect_images(model, test_incorrect_pred, class_map, grad_cam=False)
   
             axs[row_idx, col_idx].imshow(heatmap, cmap='jet', alpha=0.7)
             axs[row_idx, col_idx].imshow(img, alpha=0.5)
-            axs[row_idx, col_idx].set_title('Overlayed GradCAM')
+            axs[row_idx, col_idx].set_title(f'GT: {class_map[label]}, Pred: {class_map[pred]}')
             axs[row_idx, col_idx].axis('off')
 
-    
-    plt.savefig("results/incorrect_images.png")
+    if grad_cam:
+        plt.savefig("results/incorrect_images_with_gradcam.png")
+    else:
+        plt.savefig("results/incorrect_images.png")
 
 
 def model_summary():
