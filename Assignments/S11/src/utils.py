@@ -5,10 +5,77 @@ import matplotlib.pyplot as plt
 import numpy as np
 from src.models.resnet import ResNet18 as Net
 from torchsummary import summary
+
+from dataclasses import dataclass, field
+from typing import Any, Callable, List, Optional, Tuple, Union
+
+import cv2
+import matplotlib.pyplot as plt
+import numpy as np
+import PIL
+import torch.nn as nn
+import torchinfo
+import torchvision
+import torchvision.transforms as T
 from pytorch_grad_cam import GradCAM
 from pytorch_grad_cam.utils.image import show_cam_on_image
 from pytorch_grad_cam.utils.model_targets import ClassifierOutputTarget
 
+
+@dataclass(frozen=False, init=True)
+class GradCamWrapper:
+    model: nn.Module
+    target_layers: List[nn.Module]
+    device: str
+    targets: List[int]
+    image_tensor: torch.Tensor
+    image_numpy: np.ndarray
+    reshape_transform: Optional[Callable] = None
+    use_cuda: bool = field(init=False)
+    target_categories: List[ClassifierOutputTarget] = field(init=False)
+
+    def __post_init__(self) -> None:
+        self.use_cuda = self.device == "cuda"
+        self.target_categories = [
+            ClassifierOutputTarget(target) for target in self.targets
+        ]
+        self.gradcam = self._init_gradcam_object()
+
+    def _init_gradcam_object(self) -> GradCAM:
+        return GradCAM(
+            model=self.model,
+            target_layers=self.target_layers,
+            use_cuda=self.use_cuda,
+            reshape_transform=self.reshape_transform,
+        )
+
+    def _generate_heatmap(self) -> np.ndarray:
+        heatmap = self.gradcam(
+            input_tensor=self.image_tensor,
+            targets=self.target_categories,
+        )
+        return heatmap
+
+    def display(self, save: bool = False) -> None:
+        heatmap = self._generate_heatmap()
+        heatmap = heatmap[0, :]
+        visualization = show_cam_on_image(self.image_numpy, heatmap, use_rgb=True)
+        fig, axes = plt.subplots(figsize=(20, 10), ncols=3)
+
+        axes[0].imshow(self.image_numpy)
+        axes[0].axis("off")
+
+        axes[1].imshow(heatmap)
+        axes[1].axis("off")
+
+        axes[2].imshow(visualization)
+        axes[2].axis("off")
+
+        if save:
+            plt.savefig("test.png", bbox_inches='tight')
+
+        plt.show()
+      
 def save_model(model, target_dir, model_name):
   """Saves a PyTorch model to a target directory.
 
@@ -75,25 +142,27 @@ def show_incorrect_images(model, test_incorrect_pred, class_map, grad_cam=False)
         axs[row_idx, col_idx].axis('off')
 
         if grad_cam:
-          # Convert the image to a tensor and add batch dimension
-          input_image = test_incorrect_pred['images'][i].unsqueeze(0)
+          # Create a GradCamWrapper object
+          cam_wrapper = GradCamWrapper(
+              model=model,
+              target_layers=[model.layer_name_for_gradcam],
+              device='cuda' if torch.cuda.is_available() else 'cpu',
+              targets=[label],  # Assuming the ground truth is the target class
+              image_tensor=input_image,
+              image_numpy=img,
+          )
   
-          # Create a GradCAM object
-          cam = GradCAM(model=model, target_layers=[model.layer3[-1]])
+          # Get the GradCAM heatmap
+          heatmap = cam_wrapper._generate_heatmap()
+          heatmap = heatmap[0, :]
   
-          # Get the target class output (here, the ground truth class)
-          target_class = [ClassifierOutputTarget(label)]
+          # Overlay the heatmap on the original image
+          visualization = show_cam_on_image(img, heatmap, use_rgb=True)
   
-          # Compute the GradCAM heatmap
-          grayscale_cam = cam(input_tensor=input_image, targets=target_class)
-  
-          # Convert the heatmap to a color map and overlay it on the image
-          visualization = show_cam_on_image(img, grayscale_cam)
-  
-          # Plot the GradCAM output
-          axs[row_idx + 1, col_idx].imshow(visualization)
-          axs[row_idx + 1, col_idx].set_title('GradCAM')
-          axs[row_idx + 1, col_idx].axis('off')
+          axs[row_idx, col_idx * 2 + 1].imshow(heatmap, cmap='jet', alpha=0.7)
+          axs[row_idx, col_idx * 2 + 1].imshow(img, alpha=0.5)
+          axs[row_idx, col_idx * 2 + 1].set_title('Overlayed GradCAM')
+          axs[row_idx, col_idx * 2 + 1].axis('off')
 
 
     plt.savefig("results/incorrect_images.png")
