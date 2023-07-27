@@ -115,7 +115,7 @@ def plot_graph(train_losses, test_losses, train_acc, test_acc):
 def show_incorrect_images(test_incorrect_pred, class_map, grad_cam=False, model=None):
     num_images = 20
     num_rows = 4
-    num_cols = (num_images + 1) // 2  # Adjust the number of columns based on the number of images
+    num_cols = (num_images + 1) // num_rows  # Adjust the number of columns based on the number of images
 
     fig, axs = plt.subplots(num_rows, num_cols, figsize=(num_cols * 4, num_rows * 4))
 
