@@ -167,8 +167,6 @@ def show_incorrect_images(model, test_incorrect_pred, class_map, grad_cam=False)
 
     
     plt.savefig("results/incorrect_images.png")
-    if grad_cam:
-        
 
 
 def model_summary():
