@@ -10,7 +10,7 @@ from torchvision import transforms
 torch.manual_seed(1)
 
 # Setup hyperparameters
-NUM_EPOCHS = 20
+NUM_EPOCHS = 5
 BATCH_SIZE = 512
 LEARNING_RATE = 0.03
 MOMENTUM = 0.9
@@ -63,7 +63,7 @@ scheduler = OneCycleLR(
         max_lr=MAX_LR,
         steps_per_epoch=len(train_dataloader),
         epochs=NUM_EPOCHS,
-        pct_start=5/NUM_EPOCHS,
+        pct_start=2/NUM_EPOCHS,
         div_factor=100,
         three_phase=False,
         final_div_factor=100,
