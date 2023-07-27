@@ -35,10 +35,11 @@ def train_step(model, device, train_loader, optimizer, criterion, scheduler):
     pbar.set_description(desc= f'Train: Loss={loss.item():0.4f} Batch_id={batch_idx} Accuracy={100*correct/processed:0.2f}')
     scheduler.step()
 
-  print(train_loss)
-    
   train_acc=100*correct/processed
   train_loss=train_loss/len(train_loader)
+  
+  print(train_loss)
+    
   return train_loss, train_acc
 
 def test_step(model, device, test_loader, criterion):
