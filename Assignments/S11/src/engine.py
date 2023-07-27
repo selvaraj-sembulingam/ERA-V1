@@ -34,7 +34,8 @@ def train_step(model, device, train_loader, optimizer, criterion, scheduler):
 
     pbar.set_description(desc= f'Train: Loss={loss.item():0.4f} Batch_id={batch_idx} Accuracy={100*correct/processed:0.2f}')
     scheduler.step()
-
+    
+  train_loss /= processed
   train_acc = 100*correct/processed
   return train_loss, train_acc
 
@@ -43,6 +44,7 @@ def test_step(model, device, test_loader, criterion):
 
     test_loss = 0
     correct = 0
+    processed = 0
     test_incorrect_pred = {'images': [], 'ground_truths': [], 'predicted_vals': []}
 
     with torch.no_grad():
@@ -61,15 +63,15 @@ def test_step(model, device, test_loader, criterion):
             test_incorrect_pred['predicted_vals'].extend(pred[incorrect_indices])
 
             correct += GetCorrectPredCount(output, target)
+            processed += len(data)
+
+    test_loss /= processed
+    test_acc = 100*correct/processed
 
 
-    test_loss /= len(test_loader.dataset)
-    test_acc = 100. * correct / len(test_loader.dataset)
-
-
-    print('Test set: Average loss: {:.4f}, Accuracy: {}/{} ({:.2f}%)\n'.format(
-        test_loss, correct, len(test_loader.dataset),
-        100. * correct / len(test_loader.dataset)))
+    print('Test set: Loss: {:.4f}, Accuracy: {}/{} ({:.2f}%)\n'.format(
+        test_loss, correct, processed,
+        test_acc)
     return test_loss, test_acc, test_incorrect_pred
 
 def train(model, train_loader, test_loader, device, optimizer, epochs, criterion, scheduler):
