@@ -137,9 +137,9 @@ def show_incorrect_images(model, test_incorrect_pred, class_map, grad_cam=False)
         label = test_incorrect_pred['ground_truths'][i].cpu().item()
         pred = test_incorrect_pred['predicted_vals'][i].cpu().item()
 
-        axs[row_idx, col_idx].imshow(img)
-        axs[row_idx, col_idx].set_title(f'GT: {class_map[label]}, Pred: {class_map[pred]}')
-        axs[row_idx, col_idx].axis('off')
+        #axs[row_idx, col_idx].imshow(img)
+        #axs[row_idx, col_idx].set_title(f'GT: {class_map[label]}, Pred: {class_map[pred]}')
+        #axs[row_idx, col_idx].axis('off')
 
         if grad_cam:
             input_image = test_incorrect_pred['images'][i].unsqueeze(0)
@@ -160,13 +160,15 @@ def show_incorrect_images(model, test_incorrect_pred, class_map, grad_cam=False)
             # Overlay the heatmap on the original image
             visualization = show_cam_on_image(img, heatmap, use_rgb=True)
   
-            axs[row_idx, col_idx * 2 + 1].imshow(heatmap, cmap='jet', alpha=0.7)
-            axs[row_idx, col_idx * 2 + 1].imshow(img, alpha=0.5)
-            axs[row_idx, col_idx * 2 + 1].set_title('Overlayed GradCAM')
-            axs[row_idx, col_idx * 2 + 1].axis('off')
+            axs[row_idx, col_idx].imshow(heatmap, cmap='jet', alpha=0.7)
+            axs[row_idx, col_idx].imshow(img, alpha=0.5)
+            axs[row_idx, col_idx].set_title('Overlayed GradCAM')
+            axs[row_idx, col_idx].axis('off')
 
-
+    
     plt.savefig("results/incorrect_images.png")
+    if grad_cam:
+        
 
 
 def model_summary():
