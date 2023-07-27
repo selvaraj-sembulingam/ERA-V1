@@ -3,7 +3,7 @@ from pathlib import Path
 from PIL import Image
 import matplotlib.pyplot as plt
 import numpy as np
-from src.custom_resnet import CustomResNet as Net
+from src.models.resnet import ResNet18 as Net
 from torchsummary import summary
 
 def save_model(model, target_dir, model_name):
