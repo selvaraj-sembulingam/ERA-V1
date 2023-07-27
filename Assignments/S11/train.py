@@ -53,7 +53,7 @@ train_dataloader, test_dataloader, class_names = data_setup.create_dataloaders(
 )
 
 # Create model
-model = ResNet18().to(device)
+model = resnet.ResNet18().to(device)
 
 # Set loss and optimizer
 criterion = torch.nn.CrossEntropyLoss()
