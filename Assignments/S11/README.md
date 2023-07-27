@@ -12,7 +12,7 @@
     └── utils.py
     └── engine.py
 └── results/
-    └── ResNet.pth
+    └── ResNet18.pth
     └── incorrect_images.png
     └── loss_accuracy_plot.png
     └── lr_finder_plot.png
