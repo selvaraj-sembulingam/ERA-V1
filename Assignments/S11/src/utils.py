@@ -5,6 +5,8 @@ import matplotlib.pyplot as plt
 import numpy as np
 from src.models.resnet import ResNet18 as Net
 from torchsummary import summary
+from pytorch_grad_cam import GradCAM
+from pytorch_grad_cam.utils.image import show_cam_on_image
 
 def save_model(model, target_dir, model_name):
   """Saves a PyTorch model to a target directory.
@@ -50,7 +52,7 @@ def plot_graph(train_losses, test_losses, train_acc, test_acc):
 
     plt.savefig("results/loss_accuracy_plot.png")
 
-def show_incorrect_images(test_incorrect_pred, class_map):
+def show_incorrect_images(model, test_incorrect_pred, class_map, grad_cam=False):
     num_images = 10
     num_rows = 2
     num_cols = (num_images + 1) // 2  # Adjust the number of columns based on the number of images
@@ -70,6 +72,28 @@ def show_incorrect_images(test_incorrect_pred, class_map):
         axs[row_idx, col_idx].imshow(img)
         axs[row_idx, col_idx].set_title(f'GT: {class_map[label]}, Pred: {class_map[pred]}')
         axs[row_idx, col_idx].axis('off')
+
+        if grad_cam:
+          # Convert the image to a tensor and add batch dimension
+          input_image = test_incorrect_pred['images'][i].unsqueeze(0)
+  
+          # Create a GradCAM object
+          cam = GradCAM(model=model, target_layer=model.layer3[-1])
+  
+          # Get the target class output (here, the ground truth class)
+          target_class = label
+  
+          # Compute the GradCAM heatmap
+          grayscale_cam = cam(input_tensor=input_image, target_category=target_class)
+  
+          # Convert the heatmap to a color map and overlay it on the image
+          visualization = show_cam_on_image(img, grayscale_cam)
+  
+          # Plot the GradCAM output
+          axs[row_idx + 1, col_idx].imshow(visualization)
+          axs[row_idx + 1, col_idx].set_title('GradCAM')
+          axs[row_idx + 1, col_idx].axis('off')
+
 
     plt.savefig("results/incorrect_images.png")
 
