@@ -142,27 +142,28 @@ def show_incorrect_images(model, test_incorrect_pred, class_map, grad_cam=False)
         axs[row_idx, col_idx].axis('off')
 
         if grad_cam:
-          # Create a GradCamWrapper object
-          cam_wrapper = GradCamWrapper(
-              model=model,
-              target_layers=[model.layer3[-1]],
-              device='cuda' if torch.cuda.is_available() else 'cpu',
-              targets=[label],  # Assuming the ground truth is the target class
-              image_tensor=input_image,
-              image_numpy=img,
-          )
+            input_image = test_incorrect_pred['images'][i].unsqueeze(0)
+            # Create a GradCamWrapper object
+            cam_wrapper = GradCamWrapper(
+                model=model,
+                target_layers=[model.layer3[-1]],
+                device='cuda' if torch.cuda.is_available() else 'cpu',
+                targets=[label],  # Assuming the ground truth is the target class
+                image_tensor=input_image,
+                image_numpy=img,
+            )
   
-          # Get the GradCAM heatmap
-          heatmap = cam_wrapper._generate_heatmap()
-          heatmap = heatmap[0, :]
+            # Get the GradCAM heatmap
+            heatmap = cam_wrapper._generate_heatmap()
+            heatmap = heatmap[0, :]
   
-          # Overlay the heatmap on the original image
-          visualization = show_cam_on_image(img, heatmap, use_rgb=True)
+            # Overlay the heatmap on the original image
+            visualization = show_cam_on_image(img, heatmap, use_rgb=True)
   
-          axs[row_idx, col_idx * 2 + 1].imshow(heatmap, cmap='jet', alpha=0.7)
-          axs[row_idx, col_idx * 2 + 1].imshow(img, alpha=0.5)
-          axs[row_idx, col_idx * 2 + 1].set_title('Overlayed GradCAM')
-          axs[row_idx, col_idx * 2 + 1].axis('off')
+            axs[row_idx, col_idx * 2 + 1].imshow(heatmap, cmap='jet', alpha=0.7)
+            axs[row_idx, col_idx * 2 + 1].imshow(img, alpha=0.5)
+            axs[row_idx, col_idx * 2 + 1].set_title('Overlayed GradCAM')
+            axs[row_idx, col_idx * 2 + 1].axis('off')
 
 
     plt.savefig("results/incorrect_images.png")
