@@ -1,3 +1,9 @@
+import torch
+import torch.nn as nn
+import torch.nn.functional as F
+import matplotlib.pyplot as plt
+import pytorch_lightning as pl
+
 class CustomResNet(pl.LightningModule):
     def __init__(self, dropout_value=0.01):
         super(CustomResNet, self).__init__()
