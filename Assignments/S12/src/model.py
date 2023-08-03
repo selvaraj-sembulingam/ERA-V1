@@ -3,6 +3,7 @@ import torch.nn as nn
 import torch.nn.functional as F
 import matplotlib.pyplot as plt
 import pytorch_lightning as pl
+from torchmetrics import Accuracy
 
 class CustomResNet(pl.LightningModule):
     def __init__(self, dropout_value=0.01):
