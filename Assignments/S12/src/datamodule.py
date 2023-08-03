@@ -1,3 +1,10 @@
+import os
+import albumentations as A
+from albumentations.pytorch import ToTensorV2
+from torchvision import datasets, transforms
+from torch.utils.data import DataLoader
+
+
 class AlbumentationsDataset(Dataset):
     def __init__(self, dataset, transforms):
         self.dataset = dataset
@@ -41,12 +48,12 @@ class CIFARDataModule(pl.LightningDataModule):
             ToTensorV2()
         ])
 
-        # Assign train/val datasets for use in dataloaders
+        # Assign train/val datasets 
         if stage == "fit" or stage is None:
             self.train_data = AlbumentationsDataset(datasets.CIFAR10(self.data_dir, train=True),  self.train_transforms)
             self.val_data = AlbumentationsDataset(datasets.CIFAR10(self.data_dir, train=False), self.test_transforms)
 
-        # Assign test dataset for use in dataloader(s)
+        # Assign test dataset
         if stage == "test" or stage is None:
             self.test_data = AlbumentationsDataset(datasets.CIFAR10(self.data_dir, train=False), self.test_transforms)
 
