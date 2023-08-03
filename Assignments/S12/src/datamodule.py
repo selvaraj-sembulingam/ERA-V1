@@ -2,7 +2,7 @@ import os
 import albumentations as A
 from albumentations.pytorch import ToTensorV2
 from torchvision import datasets, transforms
-from torch.utils.data import DataLoader
+from torch.utils.data import Dataset, DataLoader
 
 
 class AlbumentationsDataset(Dataset):
