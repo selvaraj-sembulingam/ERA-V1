@@ -1,6 +1,13 @@
+import pytorch_lightning as pl
+from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint
+from pytorch_lightning import Trainer, seed_everything
+
+from src.datamodule import CIFARDataModule
+from src.model import CustomResNet
+
+
 if __name__ == '__main__':
 
-  torch.manual_seed(1)
   pl.seed_everything(1, workers=True)
 
   data_module = CIFARDataModule()
@@ -19,3 +26,4 @@ if __name__ == '__main__':
       precision=16
   )
   trainer.fit(model, data_module)
+  trainer.test(model, data_module.test_dataloader())
