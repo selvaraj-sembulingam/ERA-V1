@@ -13,11 +13,11 @@ if __name__ == '__main__':
   data_module = CIFARDataModule()
   model = CustomResNet()
 
-  checkpoint = ModelCheckpoint(monitor="acc/val", mode="max", save_last=True)
+  checkpoint = ModelCheckpoint(monitor="acc/val", mode="max", filename='best_model', save_last=True)
   lr_rate_monitor = LearningRateMonitor(logging_interval="epoch")
 
   trainer = pl.Trainer(
-      max_epochs=24,
+      max_epochs=3,
       deterministic=True,
       logger=True,
       callbacks=[checkpoint, lr_rate_monitor],
