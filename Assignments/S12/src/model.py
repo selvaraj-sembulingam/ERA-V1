@@ -1,9 +1,10 @@
 import torch
 import torch.nn as nn
 import torch.nn.functional as F
+from torchmetrics import Accuracy
+from torch.optim.lr_scheduler import OneCycleLR
 import matplotlib.pyplot as plt
 import pytorch_lightning as pl
-from torchmetrics import Accuracy
 
 class CustomResNet(pl.LightningModule):
     def __init__(self, dropout_value=0.01):
