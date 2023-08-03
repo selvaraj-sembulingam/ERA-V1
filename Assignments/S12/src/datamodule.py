@@ -4,6 +4,8 @@ from albumentations.pytorch import ToTensorV2
 from torchvision import datasets, transforms
 from torch.utils.data import Dataset, DataLoader
 
+import pytorch_lightning as pl
+
 
 class AlbumentationsDataset(Dataset):
     def __init__(self, dataset, transforms):
