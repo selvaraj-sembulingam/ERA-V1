@@ -6,6 +6,10 @@ from torchmetrics import Accuracy
 from torch.optim.lr_scheduler import OneCycleLR
 import matplotlib.pyplot as plt
 import pytorch_lightning as pl
+import logging
+
+logger = logging.getLogger('lightning')
+logger.setLevel(logging.DEBUG)
 
 class CustomResNet(pl.LightningModule):
     def __init__(self, dropout_value=0.01):
