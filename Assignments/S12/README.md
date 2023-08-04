@@ -1,4 +1,6 @@
-# PyTorch Lightning
+# End-to-End Model Training with PyTorch Lightning
+
+This repository provides a complete guide and code for training a custom ResNet model using PyTorch Lightning on the CIFAR-10 dataset. PyTorch Lightning simplifies the training process by providing a high-level interface and best practices for organizing your code.
 
 ## Folder Structure
 ```
@@ -104,9 +106,9 @@ Estimated Total Size (MB): 31.53
 
 
 ## Key Achievements
-Created the end-to-end training pipeline using Pytorch Lightning
-Created a interactive Gradio interface for Model analysis and demo
-Link to Gradio app: https://huggingface.co/spaces/selvaraj-sembulingam/era-pl-resnet-demo
+* Created the end-to-end training pipeline using Pytorch Lightning
+* Created a interactive Gradio interface for Model analysis and demo
+* Link to Gradio app: https://huggingface.co/spaces/selvaraj-sembulingam/era-pl-resnet-demo
 
 
 
