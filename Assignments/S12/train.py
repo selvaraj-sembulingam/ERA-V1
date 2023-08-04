@@ -18,7 +18,7 @@ if __name__ == '__main__':
   lr_rate_monitor = LearningRateMonitor(logging_interval="epoch")
 
   trainer = pl.Trainer(
-      max_epochs=24,
+      max_epochs=3,
       deterministic=True,
       logger=True,
       callbacks=[checkpoint, lr_rate_monitor],
