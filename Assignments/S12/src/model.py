@@ -167,7 +167,7 @@ class CustomResNet(pl.LightningModule):
           optimizer,
           max_lr=4.79E-02,
           steps_per_epoch=len(dataloader),
-          epochs=24,
+          epochs=3,
           pct_start=5/24,
           div_factor=100,
           three_phase=False,
