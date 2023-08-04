@@ -4,7 +4,6 @@ import albumentations as A
 from albumentations.pytorch import ToTensorV2
 from torchvision import datasets, transforms
 from torch.utils.data import Dataset, DataLoader
-
 import pytorch_lightning as pl
 
 
@@ -59,7 +58,6 @@ class CIFARDataModule(pl.LightningDataModule):
         # Assign test dataset
         if stage == "test" or stage is None:
             self.test_data = AlbumentationsDataset(datasets.CIFAR10(self.data_dir, train=False), self.test_transforms)
-
 
     def train_dataloader(self):
         return DataLoader(self.train_data, batch_size=self.batch_size, shuffle=True, num_workers=self.num_workers, pin_memory=True)
