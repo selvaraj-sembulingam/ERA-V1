@@ -25,6 +25,7 @@ def load_model():
   model.freeze()
   return model
 
+
 def get_misclassified_images():
     data_module = CIFARDataModule(batch_size=1)
     data_module.setup()
@@ -64,11 +65,14 @@ def get_misclassified_images():
             if i>20:
               break
     return error_images, error_images_gradcam, error_label, error_pred, error_prob
+
+
 def denormalize_image(image):
     return image * [0.24703233, 0.24348505, 0.26158768] + [0.49139968, 0.48215827, 0.44653124]
 
 classes = ('plane', 'car', 'bird', 'cat', 'deer',
             'dog', 'frog', 'horse', 'ship', 'truck')
+
 
 def save_misclassified_images(error_images, error_label, error_pred, error_prob):
   plt.figure()
@@ -82,6 +86,7 @@ def save_misclassified_images(error_images, error_label, error_pred, error_prob)
       plt.axis('off')
       plt.imsave("misclassified"+str(ind)+".jpg",denormalize_image(image.permute(1, 2, 0).cpu().numpy()))
       plt.clf()
+
 
 def plot_misclassified_images(error_images, error_label, error_pred, error_prob, grad_cam=False):
     num_images = len(error_images)
