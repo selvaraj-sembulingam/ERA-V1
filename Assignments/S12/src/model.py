@@ -6,10 +6,7 @@ from torchmetrics import Accuracy
 from torch.optim.lr_scheduler import OneCycleLR
 import matplotlib.pyplot as plt
 import pytorch_lightning as pl
-# import logging
 
-# logger = logging.getLogger('lightning')
-# logger.setLevel(logging.DEBUG)
 
 class CustomResNet(pl.LightningModule):
     def __init__(self, dropout_value=0.01):
@@ -136,11 +133,4 @@ class CustomResNet(pl.LightningModule):
 
         return [optimizer], [scheduler]
         
-    # def on_train_epoch_end(self):
-    #     metrics = self.trainer.callback_metrics
-    #     logger.info(f'{metrics}')
-    
-    # def on_validation_epoch_end(self):
-    #     metrics = self.trainer.callback_metrics
-    #     print(f'Validation Metrics: {metrics}')
-    #     logger.info(f'{metrics["Validation Metrics"]["loss/train"].item()}')
+
