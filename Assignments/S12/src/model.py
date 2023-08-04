@@ -63,6 +63,7 @@ class CustomResNet(pl.LightningModule):
         
     def loss_function(self, pred, target):
         criterion = torch.nn.CrossEntropyLoss()
+        
         return criterion(pred, target)
         
     def forward(self, x):
@@ -95,30 +96,12 @@ class CustomResNet(pl.LightningModule):
         self.test_incorrect_pred['predicted_vals'].extend(predicted_labels)
 
 
-
-    def save_misclassified_images(self, images, labels, predictions, output_dir):
-        os.makedirs(output_dir, exist_ok=True)
-
-        for i in range(20):
-            img = images[i].permute(1, 2, 0).cpu().numpy()
-            true_label = labels[i].item()
-            pred_label = predictions[i].item()
-
-            filename = f"misclassified_{i}_true_{true_label}_pred_{pred_label}.png"
-            filepath = os.path.join(output_dir, filename)
-
-            plt.imshow(img)
-            plt.title(f"True Label: {true_label}, Predicted Label: {pred_label}")
-            plt.axis("off")
-            plt.savefig(filepath, bbox_inches="tight")
-            plt.close()
-
-
     def get_loss_accuracy(self, batch):
         images, labels = batch
         predictions = self(images)
         loss = self.loss_function(predictions, labels)
         accuracy = self.accuracy(predictions, labels)
+        
         return loss, accuracy * 100
 
     def training_step(self, batch, batch_idx):
@@ -140,19 +123,6 @@ class CustomResNet(pl.LightningModule):
         loss = self.validation_step(batch, batch_idx)
         self.get_misclassified_images(batch)
         return loss
-
-    def on_test_end(self):
-        # After testing is complete, save the misclassified images
-        images = torch.stack(self.test_incorrect_pred['images'])
-        labels = torch.stack(self.test_incorrect_pred['ground_truths'])
-        predictions = torch.stack(self.test_incorrect_pred['predicted_vals'])
-
-        output_dir = "misclassified_images"
-        self.save_misclassified_images(images, labels, predictions, output_dir)
-
-        # Clear the list for the next testing
-        self.test_incorrect_pred = {'images': [], 'ground_truths': [], 'predicted_vals': []}
-
 
 
     def configure_optimizers(self):
