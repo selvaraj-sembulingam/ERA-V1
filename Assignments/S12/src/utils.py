@@ -39,14 +39,23 @@ def get_misclassified_images():
         pred_class = pred.argmax(axis=-1)
         if pred_class != _y_valid.cpu().numpy():
             error_images.extend(_X_valid)
+            # Grad-CAM 
+            original_image =_X_valid
+            _X_valid.requires_grad = True
+            target_layers = [model.layer3[-1]]
+            cam = GradCAM(model=model, target_layers=target_layers, use_cuda=False)
+            grayscale_cam = cam(input_tensor=_X_valid, targets=None)
+            grayscale_cam = grayscale_cam[0, :]
+            _X_valid.requires_grad = False
+            visualization = show_cam_on_image(denormalize_image(_X_valid.squeeze(0).permute(1, 2, 0).cpu().numpy()), grayscale_cam, use_rgb=True, image_weight=0.50)
+            error_images_gradcam.append(visualization)
             error_label.extend(_y_valid)
             error_pred.extend(pred_class)
             error_prob.extend(pred.max(axis=-1)) 
             i+=1
             if i>20:
               break
-    return error_images, error_label, error_pred, error_prob
-
+    return error_images, error_images_gradcam, error_label, error_pred, error_prob
 def denormalize_image(image):
     return image * [0.24703233, 0.24348505, 0.26158768] + [0.49139968, 0.48215827, 0.44653124]
 
@@ -68,20 +77,20 @@ def save_misclassified_images(error_images, error_label, error_pred, error_prob)
 
 def plot_misclassified_images(error_images, error_label, error_pred, error_prob, grad_cam=False):
     num_images = len(error_images)
-    h_size, w_size = [4, 5]
+    h_size, w_size = [5, 4]
     plt.figure(figsize=(15, 15))
     
     for ind, image in enumerate(error_images):
-        plt.subplot(h_size, w_size, ind + 1)
+        plt.subplot(h_size, w_size, ind+1)
         pred_label = classes[error_pred[ind]]
         pred_prob = error_prob[ind]
         true_label = classes[error_label[ind]]
         if not grad_cam:
           plt.imshow(denormalize_image(image.permute(1, 2, 0).cpu().numpy()))
-
+        else:
+          plt.imshow(image)
         plt.title(f'GT: {true_label}, Pred: {pred_label}')
         plt.axis('off')
-        plt.imsave(f"misclassified{ind}.jpg", denormalize_image(image.permute(1, 2, 0).cpu().numpy()))
     
     plt.tight_layout()
     plt.show()
