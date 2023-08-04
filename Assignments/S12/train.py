@@ -1,3 +1,4 @@
+import torch
 import pytorch_lightning as pl
 from pytorch_lightning.callbacks import LearningRateMonitor, ModelCheckpoint
 from pytorch_lightning import Trainer, seed_everything
@@ -27,3 +28,4 @@ if __name__ == '__main__':
   )
   trainer.fit(model, data_module)
   trainer.test(model, data_module.test_dataloader())
+  torch.save(model.state_dict(), 'CustomResNet.pth')
