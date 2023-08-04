@@ -136,7 +136,7 @@ class CustomResNet(pl.LightningModule):
 
         return [optimizer], [scheduler]
         
-    def on_train_epoch_end(self, outputs, batch, batch_idx):
+    def on_train_epoch_end(self, outputs, batch, batch_idx, dataloader_idx):
         metrics = self.trainer.callback_metrics
         print(f'Training Loss: {metrics["loss/train"].item()}, Training Accuracy: {metrics["acc/train"].item()}')
         logger.info(f'{metrics}')
