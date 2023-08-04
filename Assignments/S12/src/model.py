@@ -136,7 +136,7 @@ class CustomResNet(pl.LightningModule):
 
         return [optimizer], [scheduler]
         
-    def on_train_batch_end(self):
+    def on_train_batch_end(self, outputs, batch, batch_idx):
         metrics = self.trainer.callback_metrics
         logger.info(f'{metrics}')
     
