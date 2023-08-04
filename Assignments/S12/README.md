@@ -1,5 +1,18 @@
 # PyTorch Lightning
 
+## Folder Structure
+```
+└── results/
+    └── CustomResNet.pth.zip
+└── src/
+    └── datamodule.py
+    └── model.py
+    └── utils.py
+└── README.md
+└── S12.ipynb
+└── train.py
+```
+
 ## How to Run the code
 Clone the repo and run
 Change your current directory to S9
@@ -91,6 +104,9 @@ Estimated Total Size (MB): 31.53
 
 
 ## Key Achievements
+Created the end-to-end training pipeline using Pytorch Lightning
+Created a interactive Gradio interface for Model analysis and demo
+Link to Gradio app: https://huggingface.co/spaces/selvaraj-sembulingam/era-pl-resnet-demo
 
 
 
