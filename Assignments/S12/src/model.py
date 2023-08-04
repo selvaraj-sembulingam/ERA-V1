@@ -138,10 +138,10 @@ class CustomResNet(pl.LightningModule):
         
     def on_train_epoch_end(self, outputs, batch, batch_idx):
         metrics = self.trainer.callback_metrics
-        print(metrics['loss/train'].item,metrics['acc/train'].item)
+        print(f'Training Loss: {metrics["loss/train"].item()}, Training Accuracy: {metrics["acc/train"].item()}')
         logger.info(f'{metrics}')
     
     def on_validation_epoch_end(self):
         metrics = self.trainer.callback_metrics
-        print(metrics)
+        print(f'Validation Metrics: {metrics}')
         logger.info(f'{metrics}')
