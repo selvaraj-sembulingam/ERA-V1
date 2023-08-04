@@ -85,7 +85,7 @@ def save_misclassified_images(error_images, error_label, error_pred, error_prob)
 
 def plot_misclassified_images(error_images, error_label, error_pred, error_prob, grad_cam=False):
     num_images = len(error_images)
-    h_size, w_size = [5, 4]
+    h_size, w_size = [4, 5]
     plt.figure(figsize=(15, 15))
     
     for ind, image in enumerate(error_images):
