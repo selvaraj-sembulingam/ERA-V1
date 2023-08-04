@@ -81,21 +81,6 @@ class CustomResNet(pl.LightningModule):
         
         return x
 
-    def get_misclassified_images(self, batch):
-        images, labels = batch
-        predictions = self(images)
-        
-        # Check for misclassifications and store the misclassified images
-        predicted_labels = torch.argmax(predictions, dim=1)
-        misclassified_mask = predicted_labels != labels
-        misclassified_images = images[misclassified_mask]
-
-        # Append the misclassified images to the list
-        self.test_incorrect_pred['images'].extend(misclassified_images)
-        self.test_incorrect_pred['ground_truths'].extend(labels)
-        self.test_incorrect_pred['predicted_vals'].extend(predicted_labels)
-
-
     def get_loss_accuracy(self, batch):
         images, labels = batch
         predictions = self(images)
@@ -118,13 +103,11 @@ class CustomResNet(pl.LightningModule):
 
         return loss
 
-
     def test_step(self, batch, batch_idx):
         loss = self.validation_step(batch, batch_idx)
 
         return loss
-
-
+        
     def configure_optimizers(self):
         LEARNING_RATE=0.03
         WEIGHT_DECAY=0
@@ -137,7 +120,7 @@ class CustomResNet(pl.LightningModule):
           optimizer,
           max_lr=4.79E-02,
           steps_per_epoch=len(dataloader),
-          epochs=3,
+          epochs=24,
           pct_start=5/24,
           div_factor=100,
           three_phase=False,
