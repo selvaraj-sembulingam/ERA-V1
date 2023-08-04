@@ -106,22 +106,22 @@ class CustomResNet(pl.LightningModule):
 
     def training_step(self, batch, batch_idx):
         loss, accuracy = self.get_loss_accuracy(batch)
-        self.log("loss/train", loss)
-        self.log("acc/train", accuracy)
+        self.log("loss/train", loss, on_epoch=True)
+        self.log("acc/train", accuracy, on_epoch=True)
         
         return loss
 
     def validation_step(self, batch, batch_idx):
         loss, accuracy = self.get_loss_accuracy(batch)
-        self.log("loss/val", loss)
-        self.log("acc/val", accuracy)
+        self.log("loss/val", loss, on_epoch=True)
+        self.log("acc/val", accuracy, on_epoch=True)
 
         return loss
 
 
     def test_step(self, batch, batch_idx):
         loss = self.validation_step(batch, batch_idx)
-        self.get_misclassified_images(batch)
+
         return loss
 
 
