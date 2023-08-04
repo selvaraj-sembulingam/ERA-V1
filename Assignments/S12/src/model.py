@@ -131,3 +131,11 @@ class CustomResNet(pl.LightningModule):
         scheduler = {"scheduler": lr_scheduler, "interval" : "step"}
 
         return [optimizer], [scheduler]
+        
+    def on_train_batch_end(self, outputs, batch, batch_idx, dataloader_idx):
+        metrics = self.trainer.callback_metrics
+        logger.info(f'{metrics}')
+    
+    def on_validation_epoch_end(self):
+        metrics = self.trainer.callback_metrics
+        logger.info(f'{metrics}')
