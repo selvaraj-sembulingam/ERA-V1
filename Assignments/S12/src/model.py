@@ -6,10 +6,10 @@ from torchmetrics import Accuracy
 from torch.optim.lr_scheduler import OneCycleLR
 import matplotlib.pyplot as plt
 import pytorch_lightning as pl
-import logging
+# import logging
 
-logger = logging.getLogger('lightning')
-logger.setLevel(logging.DEBUG)
+# logger = logging.getLogger('lightning')
+# logger.setLevel(logging.DEBUG)
 
 class CustomResNet(pl.LightningModule):
     def __init__(self, dropout_value=0.01):
@@ -95,15 +95,15 @@ class CustomResNet(pl.LightningModule):
 
     def training_step(self, batch, batch_idx):
         loss, accuracy = self.get_loss_accuracy(batch)
-        self.log("loss/train", loss, on_epoch=True)
-        self.log("acc/train", accuracy, on_epoch=True)
+        self.log("loss/train", loss, on_epoch=True, prog_bar=True, logger=True)
+        self.log("acc/train", accuracy, on_epoch=True, prog_bar=True, logger=True)
         
         return loss
 
     def validation_step(self, batch, batch_idx):
         loss, accuracy = self.get_loss_accuracy(batch)
-        self.log("loss/val", loss, on_epoch=True)
-        self.log("acc/val", accuracy, on_epoch=True)
+        self.log("loss/val", loss, on_epoch=True, prog_bar=True, logger=True)
+        self.log("acc/val", accuracy, on_epoch=True, prog_bar=True, logger=True)
 
         return loss
 
