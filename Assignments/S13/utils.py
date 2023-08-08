@@ -405,6 +405,8 @@ def check_class_accuracy(model, loader, threshold):
     print(f"Obj accuracy is: {(correct_obj/(tot_obj+1e-16))*100:2f}%")
     model.train()
 
+    return (correct_class/(tot_class_preds+1e-16))*100, (correct_noobj/(tot_noobj+1e-16))*100, (correct_obj/(tot_obj+1e-16))*100
+
 
 def get_mean_std(loader):
     # var[X] = E[X**2] - E[X]**2
