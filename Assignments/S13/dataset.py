@@ -150,9 +150,9 @@ def test():
     transform = config.test_transforms
 
     dataset = YOLODataset(
-        "COCO/train.csv",
-        "COCO/images/images/",
-        "COCO/labels/labels_new/",
+        config.DATASET + "/train.csv",
+        config.DATASET + /images/",
+        config.DATASET + "labels/",
         S=[13, 26, 52],
         anchors=anchors,
         transform=transform,
