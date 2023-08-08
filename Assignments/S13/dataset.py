@@ -152,7 +152,7 @@ def test():
     dataset = YOLODataset(
         config.DATASET + "/train.csv",
         config.DATASET + "/images/",
-        config.DATASET + "labels/",
+        config.DATASET + "/labels/",
         S=[13, 26, 52],
         anchors=anchors,
         transform=transform,
