@@ -6,16 +6,16 @@ import os
 from albumentations.pytorch import ToTensorV2
 from utils import seed_everything
 
-DATASET = 'PASCAL_VOC_100'
+DATASET = '/storage/PASCAL_VOC'
 DEVICE = "cuda" if torch.cuda.is_available() else "cpu"
-# seed_everything()  # If you want deterministic behavior
+seed_everything()  # If you want deterministic behavior
 NUM_WORKERS = os.cpu_count()-1
 BATCH_SIZE = 32
 IMAGE_SIZE = 416
 NUM_CLASSES = 20
 LEARNING_RATE = 1e-5
 WEIGHT_DECAY = 1e-4
-NUM_EPOCHS = 100
+NUM_EPOCHS = 40
 CONF_THRESHOLD = 0.05
 MAP_IOU_THRESH = 0.5
 NMS_IOU_THRESH = 0.45
