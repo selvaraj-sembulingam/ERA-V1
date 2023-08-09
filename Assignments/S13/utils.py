@@ -379,7 +379,7 @@ def check_class_accuracy(model, loader, threshold):
     tot_noobj, correct_noobj = 0, 0
     tot_obj, correct_obj = 0, 0
 
-    for idx, (x, y) in enumerate(tqdm(loader)):
+    for idx, (x, y) in enumerate(loader):
         x = x.to(config.DEVICE)
         with torch.no_grad():
             out = model(x)
@@ -412,7 +412,7 @@ def get_mean_std(loader):
     # var[X] = E[X**2] - E[X]**2
     channels_sum, channels_sqrd_sum, num_batches = 0, 0, 0
 
-    for data, _ in tqdm(loader):
+    for data, _ in loader:
         channels_sum += torch.mean(data, dim=[0, 2, 3])
         channels_sqrd_sum += torch.mean(data ** 2, dim=[0, 2, 3])
         num_batches += 1
