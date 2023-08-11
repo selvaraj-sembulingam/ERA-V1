@@ -1,5 +1,10 @@
 # YOLO-V3
 
+YOLO (You Only Look Once) is a state-of-the-art real-time object detection system. YOLOv3 is an improved version of the YOLO algorithm that is faster and more accurate. In this project, we train YOLOv3 on the Pascal VOC dataset, which is a widely used benchmark dataset for object detection.
+
+## Architecture
+![YOLOv3-architecture](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/043a5fff-9619-4863-8a23-67c5a87a94fe)
+
 ## Folder Structure
 ```
 └── README.md
