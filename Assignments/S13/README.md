@@ -1,5 +1,29 @@
 # YOLO-V3
 
+## Folder Structure
+```
+└── README.md
+└── config.py
+└── dataset.py
+└── dataset_org.py
+└── loss.py
+└── main.ipynb
+└── model.py
+└── train.py
+└── utils.py
+```
+
+## How to Run the code
+Clone the repo and run
+Change your current directory to S13
+```
+python train.py
+```
+
+
+## Multi-Resolution Training
+
+## Mosaic Augmentation
 
 ## Train Loss
 ![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/44682b76-2874-4450-aee2-5f3f3d2f76ee)
@@ -16,5 +40,7 @@
 ## MAP
 **52.8%**
 
+### Link to Gradio Interface
+https://huggingface.co/spaces/selvaraj-sembulingam/object-detection-with-yolov3
 
 
