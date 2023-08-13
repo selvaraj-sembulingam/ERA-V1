@@ -106,7 +106,7 @@ class YOLOv3Lightning(pl.LightningModule):
         EPOCHS = config.NUM_EPOCHS
         lr_scheduler = OneCycleLR(
             optimizer,
-            max_lr=1.10E-01,
+            max_lr=1.0E-03,
             steps_per_epoch=len(dataloader),
             epochs=EPOCHS,
             pct_start=5/EPOCHS,
