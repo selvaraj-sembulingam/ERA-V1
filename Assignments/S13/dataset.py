@@ -104,6 +104,7 @@ class YOLODataset(Dataset):
 
     def __getitem__(self, index):
 
+        # apply mosaic 50% of the times
         if random.random() >= 0.5:
             image, bboxes = self.load_mosaic(index)
 
