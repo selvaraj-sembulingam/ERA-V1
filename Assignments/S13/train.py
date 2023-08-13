@@ -134,7 +134,7 @@ class YOLOv3Lightning(pl.LightningModule):
             max_lr=1.0E-03,
             steps_per_epoch=len(dataloader),
             epochs=EPOCHS,
-            pct_start=5/40,
+            pct_start=5/EPOCHS,
             div_factor=100,
             three_phase=False,
             final_div_factor=100,
