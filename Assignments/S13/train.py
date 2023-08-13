@@ -147,8 +147,8 @@ class YOLOv3Lightning(pl.LightningModule):
 
     def setup(self, stage=None):
         self.train_loader, self.test_loader, self.train_eval_loader = get_loaders(
-            train_csv_path=self.config.DATASET + "/100examples.csv",
-            test_csv_path=self.config.DATASET + "/100examples.csv",
+            train_csv_path=self.config.DATASET + "/train.csv",
+            test_csv_path=self.config.DATASET + "/test.csv",
         )
 
     def train_dataloader(self):
