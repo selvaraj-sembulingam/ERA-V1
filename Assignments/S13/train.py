@@ -179,5 +179,4 @@ if __name__ == "__main__":
     print("Training Started by Selvaraj Sembulingam")
     trainer.fit(model)
     print("Training Completed by Selvaraj Sembulingam")
-    trainer.validate(model)
     torch.save(model.state_dict(), 'YOLOv3.pth')
