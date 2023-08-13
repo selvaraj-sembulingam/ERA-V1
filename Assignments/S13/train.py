@@ -106,7 +106,7 @@ class YOLOv3Lightning(pl.LightningModule):
         EPOCHS = config.NUM_EPOCHS
         lr_scheduler = OneCycleLR(
             optimizer,
-            max_lr=1E-3,
+            max_lr=1.10E-01,
             steps_per_epoch=len(dataloader),
             epochs=EPOCHS,
             pct_start=5/EPOCHS,
@@ -144,9 +144,9 @@ if __name__ == "__main__":
     lr_rate_monitor = LearningRateMonitor(logging_interval="epoch")
     trainer = pl.Trainer(
                   max_epochs=config.NUM_EPOCHS,
-                  deterministic=True,
+                  deterministic=False,
                   logger=True,
-                  callbacks=[lr_rate_monitor],
+                  callbacks=[checkpoint, lr_rate_monitor],
                   enable_model_summary=False,
                   log_every_n_steps=1,
                   precision=16
