@@ -27,19 +27,20 @@ config = [
     ["B", 4],  # To this point is Darknet-53
     (512, 1, 1),
     (1024, 3, 1),
-    "S",
+    "S1",
     (256, 1, 1),
     "U",
     (256, 1, 1),
     (512, 3, 1),
-    "S",
+    "S2",
     (128, 1, 1),
     "U",
     (128, 1, 1),
     (256, 3, 1),
-    "S",
+    "S3",
 ]
 
+S=[13,26,52]
 
 class CNNBlock(nn.Module):
     def __init__(self, in_channels, out_channels, bn_act=True, **kwargs):
@@ -81,20 +82,45 @@ class ResidualBlock(nn.Module):
         return x
 
 
-class ScalePrediction(nn.Module):
-    def __init__(self, in_channels, num_classes):
+class SPPBlock(nn.Module):
+    def __init__(self, c1, c2, k=(5, 9, 13)):
         super().__init__()
+        c_ = c1 // 2  # Intermediate channels
+        self.cv1 = nn.Conv2d(c1, c_, kernel_size=1, stride=1)
+        self.pool_layers = nn.ModuleList([
+			nn.MaxPool2d(kernel_size=size, stride=1, padding=size // 2) for size in k
+        ])
+        self.cv2 = nn.Conv2d(c_ * (len(k) + 1), c2, kernel_size=1, stride=1)
+
+    def forward(self, x):
+        x = self.cv1(x)
+        pool_outputs = [layer(x) for layer in self.pool_layers]
+        pool_outputs = [x] + pool_outputs
+        x = torch.cat(pool_outputs, dim=1)
+        x = self.cv2(x)
+        return x
+
+    
+class ScalePrediction(nn.Module):
+    def __init__(self, in_channels, num_classes, im_shape):
+        super().__init__()
+        self.im_shape = im_shape
         self.pred = nn.Sequential(
+            SPPBlock(in_channels,in_channels),
+            nn.AdaptiveMaxPool2d(self.im_shape),
             CNNBlock(in_channels, 2 * in_channels, kernel_size=3, padding=1),
             CNNBlock(
                 2 * in_channels, (num_classes + 5) * 3, bn_act=False, kernel_size=1
             ),
+            
         )
         self.num_classes = num_classes
 
     def forward(self, x):
+
+        x = self.pred(x)
         return (
-            self.pred(x)
+            x
             .reshape(x.shape[0], 3, self.num_classes + 5, x.shape[2], x.shape[3])
             .permute(0, 1, 3, 4, 2)
         )
@@ -149,11 +175,27 @@ class YOLOv3(nn.Module):
                 layers.append(ResidualBlock(in_channels, num_repeats=num_repeats,))
 
             elif isinstance(module, str):
-                if module == "S":
+                if module == "S1":
                     layers += [
                         ResidualBlock(in_channels, use_residual=False, num_repeats=1),
                         CNNBlock(in_channels, in_channels // 2, kernel_size=1),
-                        ScalePrediction(in_channels // 2, num_classes=self.num_classes),
+                        ScalePrediction(in_channels // 2, num_classes=self.num_classes, im_shape=S[0]),
+                    ]
+                    in_channels = in_channels // 2
+                    
+                if module == "S2":
+                    layers += [
+                        ResidualBlock(in_channels, use_residual=False, num_repeats=1),
+                        CNNBlock(in_channels, in_channels // 2, kernel_size=1),
+                        ScalePrediction(in_channels // 2, num_classes=self.num_classes, im_shape=S[1]),
+                    ]
+                    in_channels = in_channels // 2
+
+                if module == "S3":
+                    layers += [
+                        ResidualBlock(in_channels, use_residual=False, num_repeats=1),
+                        CNNBlock(in_channels, in_channels // 2, kernel_size=1),
+                        ScalePrediction(in_channels // 2, num_classes=self.num_classes, im_shape=S[2]),
                     ]
                     in_channels = in_channels // 2
 
