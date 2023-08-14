@@ -111,8 +111,10 @@ class YOLODataset(Dataset):
         return img
         
     def __getitem__(self, index):
-        sizee = index[1]
-        index = index[0]
+        sizee = None
+        if isinstance(index, list):
+            sizee = index[1]
+            index = index[0]
 
         # apply mosaic 50% of the times
         if random.random() >= 0.5:
@@ -129,7 +131,8 @@ class YOLODataset(Dataset):
             image = augmentations["image"]
             bboxes = augmentations["bboxes"]
 
-        image = self.resize(image, sizee)
+        if sizee:
+            image = self.resize(image, sizee)
         
         # Below assumes 3 scale predictions (as paper) and same num of anchors per scale
         targets = [torch.zeros((self.num_anchors // 3, S, S, 6)) for S in self.S]
