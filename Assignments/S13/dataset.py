@@ -9,6 +9,8 @@ import pandas as pd
 import torch
 from utils import xywhn2xyxy, xyxy2xywhn
 import random 
+import torchvision.transforms as transforms
+from batch_sampler import BatchSampler,RandomSampler,SequentialSampler
 
 from PIL import Image, ImageFile
 from torch.utils.data import Dataset, DataLoader
@@ -102,7 +104,15 @@ class YOLODataset(Dataset):
         labels4 = labels4[labels4[:, 3] > 0]
         return img4, labels4 
 
+    def resize(self, img, size):
+        # Image resizing for Multi-resolution training
+        transform = transforms.Resize((size, size))
+        img = transform(img)
+        return img
+        
     def __getitem__(self, index):
+        sizee = index[1]
+        index = index[0]
 
         # apply mosaic 50% of the times
         if random.random() >= 0.5:
@@ -119,6 +129,8 @@ class YOLODataset(Dataset):
             image = augmentations["image"]
             bboxes = augmentations["bboxes"]
 
+        image = self.resize(image, sizee)
+        
         # Below assumes 3 scale predictions (as paper) and same num of anchors per scale
         targets = [torch.zeros((self.num_anchors // 3, S, S, 6)) for S in self.S]
         for box in bboxes:
@@ -169,7 +181,18 @@ def test():
     scaled_anchors = torch.tensor(anchors) / (
         1 / torch.tensor(S).unsqueeze(1).unsqueeze(1).repeat(1, 3, 2)
     )
-    loader = DataLoader(dataset=dataset, batch_size=1, shuffle=True)
+    # loader = DataLoader(dataset=dataset, batch_size=1, shuffle=True)
+
+    loader = DataLoader(dataset=dataset,  
+                        batch_sampler= BatchSampler(SequentialSampler(dataset),
+                                 batch_size=1,
+                                 drop_last=True,
+                                 multiscale_step=1,
+                                 img_sizes=list(range(320, 608 + 1, 32))
+                                ),
+#                                  num_workers=4
+                        )
+
     for x, y in loader:
         boxes = []
 
