@@ -470,7 +470,7 @@ def get_loaders(train_csv_path, test_csv_path):
         batch_sampler= BatchSampler(RandomSampler(train_dataset),
                                  batch_size=config.BATCH_SIZE,
                                  drop_last=False,
-                                 multiscale_step=config.BATCH_SIZE,
+                                 multiscale_step=1,
                                  img_sizes=list(range(320, 608 + 1, 32))
                         ),
         num_workers=config.NUM_WORKERS,
