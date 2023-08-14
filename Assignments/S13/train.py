@@ -112,11 +112,9 @@ class YOLOv3Lightning(pl.LightningModule):
             self.log("MAP", mapval.item(), on_epoch=True, prog_bar=True, logger=True)
 
     def validation_step(self, batch, batch_idx):
-        # print("Val Step Started")
         loss = self.get_loss(batch)
         self.log("val/loss", loss, on_epoch=True, prog_bar=True, logger=True)
         self.validation_step_outputs.append(loss)
-        # print("Val Step Ended")
         return loss
     
     def configure_optimizers(self):
