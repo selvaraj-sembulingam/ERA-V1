@@ -107,7 +107,7 @@ class ScalePrediction(nn.Module):
         self.im_shape = im_shape
         self.pred = nn.Sequential(
             SPPBlock(in_channels,in_channels),
-            nn.AdaptiveMaxPool2d(self.im_shape),
+            nn.AdaptiveAvgPool2d(self.im_shape),
             CNNBlock(in_channels, 2 * in_channels, kernel_size=3, padding=1),
             CNNBlock(
                 2 * in_channels, (num_classes + 5) * 3, bn_act=False, kernel_size=1
