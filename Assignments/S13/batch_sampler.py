@@ -29,15 +29,15 @@ class BatchSampler(object):
         for idx in self.sampler:
             batch.append([idx,size])
             if len(batch) == self.batch_size:
-                print("Batch size reached:", batch)
+                # print("Batch size reached:", batch)
                 yield batch
                 num_batch+=1
                 batch = []
                 if self.multiscale_step and num_batch % self.multiscale_step == 0 :
                     size = np.random.choice(self.img_sizes)
-                    print("Changing image size:", size)
+                    # print("Changing image size:", size)
         if len(batch) > 0 and not self.drop_last:
-            print("Last batch:", batch)
+            # print("Last batch:", batch)
             yield batch
 
     def __len__(self):
