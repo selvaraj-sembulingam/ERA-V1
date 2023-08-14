@@ -475,7 +475,6 @@ def get_loaders(train_csv_path, test_csv_path):
                         ),
         num_workers=config.NUM_WORKERS,
         pin_memory=config.PIN_MEMORY,
-        shuffle=True,
     )
     test_loader = DataLoader(
         dataset=test_dataset,
