@@ -86,11 +86,11 @@ class SPPBlock(nn.Module):
     def __init__(self, c1, c2, k=(5, 9, 13)):
         super().__init__()
         c_ = c1 // 2  # Intermediate channels
-        self.cv1 = nn.Conv2d(c1, c_, kernel_size=1, stride=1)
+        self.cv1 = CNNBlock(c1, c_, kernel_size=1, stride=1)
         self.pool_layers = nn.ModuleList([
 			nn.MaxPool2d(kernel_size=size, stride=1, padding=size // 2) for size in k
         ])
-        self.cv2 = nn.Conv2d(c_ * (len(k) + 1), c2, kernel_size=1, stride=1)
+        self.cv2 = CNNBlock(c_ * (len(k) + 1), c2, kernel_size=1, stride=1)
 
     def forward(self, x):
         x = self.cv1(x)
