@@ -468,9 +468,9 @@ def get_loaders(train_csv_path, test_csv_path):
     train_loader = DataLoader(
         dataset=train_dataset,
         batch_sampler= BatchSampler(RandomSampler(train_dataset),
-                                 config.BATCH_SIZE,
+                                 batch_size=config.BATCH_SIZE,
                                  drop_last=False,
-                                 multiscale_step=1,
+                                 multiscale_step=config.BATCH_SIZE,
                                  img_sizes=list(range(320, 608 + 1, 32))
                         ),
         num_workers=config.NUM_WORKERS,
