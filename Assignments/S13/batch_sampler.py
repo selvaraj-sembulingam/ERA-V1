@@ -34,6 +34,7 @@ class BatchSampler(object):
                 batch = []
                 if self.multiscale_step and num_batch % self.multiscale_step == 0 :
                     size = np.random.choice(self.img_sizes)
+                    print("Changing image size:", size)
         if len(batch) > 0 and not self.drop_last:
             yield batch
 
