@@ -5,6 +5,7 @@ import numpy as np
 import os
 import random
 import torch
+from batch_sampler import BatchSampler,RandomSampler,SequentialSampler
 
 from collections import Counter
 from torch.utils.data import DataLoader
@@ -466,11 +467,15 @@ def get_loaders(train_csv_path, test_csv_path):
     )
     train_loader = DataLoader(
         dataset=train_dataset,
-        batch_size=config.BATCH_SIZE,
+        batch_sampler= BatchSampler(RandomSampler(dataset),
+                                 config.BATCH_SIZE,
+                                 drop_last=False,
+                                 multiscale_step=1,
+                                 img_sizes=list(range(320, 608 + 1, 32))
+                        ),
         num_workers=config.NUM_WORKERS,
         pin_memory=config.PIN_MEMORY,
         shuffle=True,
-        drop_last=False,
     )
     test_loader = DataLoader(
         dataset=test_dataset,
