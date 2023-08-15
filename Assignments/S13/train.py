@@ -163,7 +163,7 @@ if __name__ == "__main__":
     
     model = YOLOv3Lightning(config)
 
-    checkpoint = ModelCheckpoint(filename='last_epoch', save_last=True)
+    checkpoint = ModelCheckpoint(save_last=True)
     lr_rate_monitor = LearningRateMonitor(logging_interval="epoch")
     trainer = pl.Trainer(
                   max_epochs=config.NUM_EPOCHS,
