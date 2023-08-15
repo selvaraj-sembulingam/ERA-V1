@@ -106,7 +106,6 @@ class ScalePrediction(nn.Module):
         super().__init__()
         self.im_shape = im_shape
         self.pred = nn.Sequential(
-            SPPBlock(in_channels,in_channels),
             nn.AdaptiveMaxPool2d(self.im_shape),
             CNNBlock(in_channels, 2 * in_channels, kernel_size=3, padding=1),
             CNNBlock(
@@ -177,6 +176,7 @@ class YOLOv3(nn.Module):
             elif isinstance(module, str):
                 if module == "S1":
                     layers += [
+			SPPBlock(in_channels,in_channels),
                         ResidualBlock(in_channels, use_residual=False, num_repeats=1),
                         CNNBlock(in_channels, in_channels // 2, kernel_size=1),
                         ScalePrediction(in_channels // 2, num_classes=self.num_classes, im_shape=S[0]),
