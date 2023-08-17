@@ -49,35 +49,42 @@ Mosaic data augmentation combines 4 training images into one in random proportio
 Mosaic augmentation teaches the model to recognize objects in different localizations without relying too much on one specific context. This boosts the model’s performance by making the algorithm more robust to the surroundings of the objects.
 
 
-## Train Loss
-![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/44682b76-2874-4450-aee2-5f3f3d2f76ee)
+## Train Metrics
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/a54b957d-bca9-4117-a7f8-98d0be8ff0c8)
 
-## Obj Accuracy
-![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/51719c5e-2b7c-4eb5-857e-96da5172b856)
 
-## No obj Accuracy
-![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/46fddff2-69d4-4b0f-8626-fbe98b2a7d2b)
+## Val Metrics
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/4ffac9f0-2f64-411d-a038-10e1dddc8648)
 
-## Class Accuracy
-![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/a88fc0ae-2691-4654-ba33-063090ce5c4d)
+
+## Epoch
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/eece0145-9cae-435c-a0f6-891277a6c33e)
+
+
+## LR
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/8e33f6f5-af0b-4fe2-9708-a2ff4735a2ec)
 
 
 ## MAP
-**52.8%**
+**43.8%**
 
 ## Validation Images
 
 ### Epoch 10
-![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/25281872-351a-4c94-b3f5-0252d05a8b2a)
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/c6bdffdb-9a06-4134-97c1-08fd175e0910)
+
 
 ### Epoch 20
-![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/bb521e05-d7be-43eb-b431-a7a2b377ec46)
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/67f08b98-359f-48df-a7a2-2f1de8ac8bde)
+
 
 ### Epoch 30
-![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/b4d9a0f4-d5cc-4d1a-994b-e0b40f79d2f3)
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/24ca5831-617b-457d-b9c9-a235bff2dff8)
+
 
 ### Epoch 40
-![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/ea9ccca0-724c-40d7-b395-3584f7c0db51)
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/581eb40c-aa7a-4fb8-8a04-3f599bb3aca3)
+
 
 ### Link to Gradio Interface
 https://huggingface.co/spaces/selvaraj-sembulingam/object-detection-with-yolov3
