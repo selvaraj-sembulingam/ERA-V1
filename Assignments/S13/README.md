@@ -10,6 +10,7 @@ YOLO (You Only Look Once) is a state-of-the-art real-time object detection syste
 ## Folder Structure
 ```
 └── README.md
+└── batch_sampler.py
 └── config.py
 └── dataset.py
 └── dataset_org.py
@@ -89,4 +90,6 @@ Mosaic augmentation teaches the model to recognize objects in different localiza
 ### Link to Gradio Interface
 https://huggingface.co/spaces/selvaraj-sembulingam/object-detection-with-yolov3
 
+## Inference results from Gradio Interface with Grad-CAM
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/1f259065-3236-44fa-af2d-80488ec5f56a)
 
