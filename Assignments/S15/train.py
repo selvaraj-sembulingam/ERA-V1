@@ -227,7 +227,7 @@ def train_model(config):
 			
 			# Compute the loss using a simple cross entropy
 			loss = loss_fn(proj_output.view(-1, tokenizer_tgt.get_vocab_size()), label.view(-1))
-			batch_iterator.set_postfix({"loss": f"{loss.item():6.3f})
+			batch_iterator.set_postfix({"loss": f"{loss.item():6.3f}"})
 			
 			# Log the the loss
 			writer.add_scaler('train_loss', loss.item(), global_step)
