@@ -48,7 +48,9 @@ def greedy_decode(
 
         # get next token_to_id
         prob = model.project(out[:, -1])
+        print(prob)
         _, next_word = torch.max(prob, dim=1)
+        print(next_word)
         decoder_input = torch.cat(
             [
                 decoder_input,
@@ -59,7 +61,7 @@ def greedy_decode(
 
         if next_word == eos_idx:
             break
-
+    print(decoder_input.squeeze(0))
     return decoder_input.squeeze(0)
 
 
@@ -114,6 +116,7 @@ def run_validation(
             source_text = batch["src_text"][0]
             target_text = batch["tgt_text"][0]
             model_out_text = tokenizer_tgt.decode(model_out.detach().cpu().numpy())
+            print(model_out_text)
 
             source_texts.append(source_text)
             expected.append(target_text)
