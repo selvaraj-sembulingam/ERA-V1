@@ -201,7 +201,7 @@ def train_model(config):
 		model.load_state_dict(state['model_state_dict'])
 		initial_epoch = state['epoch'] + 1
 		optimizer.load_state_dict(state['optimizer_state_dict'])
-		global_step = step['global_step']
+		global_step = state['global_step']
 		print("Preloaded")
 		
 	loss_fn = nn.CrossEntropyLoss(ignore_index=tokenizer_src.token_to_id('[PAD]'), label_smoothing=0.1)
