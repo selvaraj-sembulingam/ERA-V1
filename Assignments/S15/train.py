@@ -117,6 +117,7 @@ def run_validation(
 
             source_texts.append(source_text)
             expected.append(target_text)
+            predicted.append(model_out_text)
 
             # Print the source, target, and model output
             print_msg("-" * console_width)
