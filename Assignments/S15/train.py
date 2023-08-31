@@ -106,19 +106,19 @@ def run_validation(model, validation_ds, tokenizer_src, tokenizer_tgt, max_len, 
 			# Compute the char error rate
 			metric = torchmetrics.CharErrorRate()
 			cer = metric(predicted, expected)
-			writer.add_scaler('validation cer', cer, global_step)
+			writer.add_scalar('validation cer', cer, global_step)
 			writer.flush()
 			
 			# Compute the word error rate
 			metric = torchmetrics.WordErrorRate()
 			wer = metric(predicted, expected)
-			writer.add_scaler('validation wer', wer, global_step)
+			writer.add_scalar('validation wer', wer, global_step)
 			writer.flush()
 
 			# Compute the BLEU metric
 			metric = torchmetrics.BLEUScore()
 			bleu = metric(predicted, expected)
-			writer.add_scaler('validation BLEU', bleu, global_step)
+			writer.add_scalar('validation BLEU', bleu, global_step)
 			writer.flush()
 
 
@@ -230,7 +230,7 @@ def train_model(config):
 			batch_iterator.set_postfix({"loss": f"{loss.item():6.3f}"})
 			
 			# Log the the loss
-			writer.add_scaler('train_loss', loss.item(), global_step)
+			writer.add_scalar('train_loss', loss.item(), global_step)
 			writer.flush()
 			
 			# Backpropagate the loss
