@@ -128,25 +128,25 @@ def run_validation(
                 print_msg("-" * console_width)
                 break
 
-        if writer:
-            # Evaluate the character error rate
-            # Compute the char error rate
-            metric = torchmetrics.CharErrorRate()
-            cer = metric(predicted, expected)
-            writer.add_scalar("validation cer", cer, global_step)
-            writer.flush()
+    if writer:
+        # Evaluate the character error rate
+        # Compute the char error rate
+        metric = torchmetrics.CharErrorRate()
+        cer = metric(predicted, expected)
+        writer.add_scalar("validation cer", cer, global_step)
+        writer.flush()
 
-            # Compute the word error rate
-            metric = torchmetrics.WordErrorRate()
-            wer = metric(predicted, expected)
-            writer.add_scalar("validation wer", wer, global_step)
-            writer.flush()
+        # Compute the word error rate
+        metric = torchmetrics.WordErrorRate()
+        wer = metric(predicted, expected)
+        writer.add_scalar("validation wer", wer, global_step)
+        writer.flush()
 
-            # Compute the BLEU metric
-            metric = torchmetrics.BLEUScore()
-            bleu = metric(predicted, expected)
-            writer.add_scalar("validation BLEU", bleu, global_step)
-            writer.flush()
+        # Compute the BLEU metric
+        metric = torchmetrics.BLEUScore()
+        bleu = metric(predicted, expected)
+        writer.add_scalar("validation BLEU", bleu, global_step)
+        writer.flush()
 
 
 def get_all_sentences(ds, lang):
