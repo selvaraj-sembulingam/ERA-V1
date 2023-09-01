@@ -2,7 +2,7 @@
 
 ## Transformer
 
-<img src="https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/362f1888-8953-4abb-a2a8-1d9bcdebae79" width=20% height=20%>
+<img src="https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/362f1888-8953-4abb-a2a8-1d9bcdebae79" width=50% height=50%>
 
 
 
