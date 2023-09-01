@@ -2,7 +2,7 @@
 
 ## Transformer
 
-![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/362f1888-8953-4abb-a2a8-1d9bcdebae79 =250x250)
+![image](https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/362f1888-8953-4abb-a2a8-1d9bcdebae79=250x250)
 
 ## Folder Structure
 ```
