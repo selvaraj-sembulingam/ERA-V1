@@ -175,35 +175,9 @@ def get_ds(config):
         "opus_books", f"{config['lang_src']}-{config['lang_tgt']}", split="train"
     )
 
-    def filter_function(example):
-            en_text = example["translation"][config['lang_src']]
-            fr_text = example["translation"][config['lang_tgt']]
-
-            en_tokens = en_text.split()
-            fr_tokens = fr_text.split()
-
-            return len(en_tokens) <= 150 and len(fr_tokens) <= len(en_tokens) + 10
-
-    #ds_raw = ds_raw.filter(filter_function)
-
-
-
     # Build tokenizer
     tokenizer_src = get_or_build_tokenizer(config, ds_raw, config["lang_src"])
     tokenizer_tgt = get_or_build_tokenizer(config, ds_raw, config["lang_tgt"])
-
-    def preprocess(sample, tokenizer_src, tokenizer_tgt, config):
-        en_text = sample["translation"][config['lang_src']]
-        fr_text = sample["translation"][config['lang_tgt']]
-
-        en_tokens = tokenizer_src.encode(en_text).ids
-        fr_tokens = tokenizer_tgt.encode(fr_text).ids
-
-        return len(en_tokens) <= 150 and len(fr_tokens) <= len(en_tokens) + 10
-
-    # Apply the preprocess function to filter the dataset
-    #ds_raw = ds_raw.filter(lambda example: preprocess(example, tokenizer_src, tokenizer_tgt, config))
-    #print(ds_raw)
 
     # Keep 90% for training, 10% for validation
     train_ds_size = int(0.9 * len(ds_raw))
