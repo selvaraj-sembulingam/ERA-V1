@@ -21,5 +21,5 @@ Parameter sharing is a technique where you share model parameters across layers 
 The One Cycle Policy is a learning rate schedule that varies the learning rate during training to achieve faster convergence and better final performance. This policy involves gradually increasing and then decreasing the learning rate during training.
 
 ## Achievements
-Reached a loss of less than 1.787 in 16 epochs for en-fr dataset
+Reached a loss of 1.787 in 16 epochs for en-fr dataset
 
