@@ -2,6 +2,8 @@
 
 The Transformer model has gained significant popularity in the field of natural language processing (NLP) due to its outstanding performance on various tasks. However, training large Transformer models can be computationally intensive and time-consuming. To address these challenges, this repository explores several advanced training techniques to make the training process more efficient and effective.
 
+<img src="https://github.com/selvaraj-sembulingam/ERA-V1/assets/66372829/362f1888-8953-4abb-a2a8-1d9bcdebae79" width=50% height=50%>
+
 ## Dynamic Padding
 Dynamic padding is a technique that optimizes the padding of input sequences during training. Instead of padding all sequences to the maximum length in a batch, dynamic padding pads each batch to the length of the longest sequence in that batch. This reduces the amount of unnecessary computation and speeds up training.
 
